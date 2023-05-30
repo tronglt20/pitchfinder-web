@@ -7,8 +7,8 @@ import AdjustIcon from "@mui/icons-material/Adjust";
 function SideBarItem(props) {
   return (
     <ListItemButton
-      selected={props.selected === props.content}
-      onClick={props.clickHandler}
+      selected={props.isSelected}
+      onClick={props.clickHandler(props.key)}
     >
       <ListItemIcon>
         <AdjustIcon />
