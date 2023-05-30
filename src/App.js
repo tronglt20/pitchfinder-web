@@ -1,11 +1,7 @@
-import SideBar from "./Components/sideBar/sideBar";
+import Container from "./WebContainer/container.js";
 
 function App() {
-  return (
-    <div className="App">
-      <SideBar />
-    </div>
-  );
+  return <Container />;
 }
 
 export default App;
