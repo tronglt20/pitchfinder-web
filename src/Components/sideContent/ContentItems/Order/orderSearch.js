@@ -11,7 +11,7 @@ function OrderSearch() {
         alignItems: "center",
       }}
     >
-      <Stack spacing={2} sx={{ width: 300 }}>
+      <Stack spacing={1} sx={{ width: 300 }}>
         <TextField label="Tìm kiếm" />
       </Stack>
       <FilterAltIcon sx={filterIconStyles} />
@@ -20,8 +20,8 @@ function OrderSearch() {
 }
 
 const filterIconStyles = {
-  height: "30px",
-  width: "30px",
+  height: "20px",
+  width: "20px",
   borderRadius: "6px",
   padding: "12px",
   bgcolor: "#EDF0F7",
