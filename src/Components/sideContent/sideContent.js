@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import General from "./ContentItems/general";
+import General from "./ContentItems/General/general";
 import Order from "./ContentItems/Order/order";
-import Pitch from "./ContentItems/pitch";
-import Customer from "./ContentItems/customer";
+import Pitch from "./ContentItems/Pitch/pitch";
+import Customer from "./ContentItems/Customer/customer";
 import { Box, Stack } from "@mui/material";
 
 function SideContent() {
