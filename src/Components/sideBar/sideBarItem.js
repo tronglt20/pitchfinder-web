@@ -8,7 +8,7 @@ function SideBarItem(props) {
   return (
     <ListItemButton
       selected={props.isSelected}
-      onClick={props.clickHandler(props.key)}
+      onClick={(event) => props.clickHandler(event, props.itemIndex)}
     >
       <ListItemIcon>
         <AdjustIcon />

@@ -5,8 +5,8 @@ import SideBarItem from "./sideBarItem";
 
 export default function SideBar() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
-  const handleListItemClick = () => {
-    setSelectedIndex(key);
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
   };
 
   const sideBarItems = [
@@ -23,7 +23,7 @@ export default function SideBar() {
         {sideBarItems.map((element, index) => (
           <SideBarItem
             content={element}
-            key={index}
+            itemIndex={index}
             clickHandler={handleListItemClick}
             isSelected={index === selectedIndex}
           />
