@@ -1,14 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import General from "./ContentItems/general";
-import Order from "./ContentItems/order";
+import Order from "./ContentItems/Order/order";
 import Pitch from "./ContentItems/pitch";
 import Customer from "./ContentItems/customer";
 import { Box, Stack } from "@mui/material";
 
 function SideContent() {
   return (
-    <Box sx={{ bgcolor: "#cccccc", width: "80%" }}>
+    <Box
+      sx={{
+        width: "80%",
+        paddingX: "47px",
+        paddingY: "61px",
+      }}
+    >
       <Routes>
         <Route path="/general" element={<General />} />
         <Route path="/order" element={<Order />} />

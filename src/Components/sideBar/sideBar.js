@@ -10,21 +10,43 @@ export default function SideBar() {
   };
 
   const sideBarItems = [
-    "Tổng quan",
-    "Quản lý Đơn đặt sân",
-    "Quản lý Sân bóng",
-    "Quản lý khách hàng",
+    {
+      name: "general",
+      description: "Tổng quan",
+    },
+    {
+      name: "order",
+      description: "Quản lý Đơn đặt sân",
+    },
+    {
+      name: "pitch",
+      description: "Quản lý Sân bóng",
+    },
+    {
+      name: "customer",
+      description: "Quản lý Khách hàng",
+    },
   ];
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <Box sx={{ p: 3 }}>Logo</Box>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        bgcolor: "#EDF0F7",
+        height: "100vh",
+      }}
+    >
+      <Box sx={{ p: 3, bgcolor: "blue", height: "80px", color: "white" }}>
+        Logo
+      </Box>
       <List component="nav" aria-label="main mailbox folders">
         {sideBarItems.map((element, index) => (
           <SideBarItem
-            content={element}
+            content={element.description}
             itemIndex={index}
             clickHandler={handleListItemClick}
+            navigateTo={element.name}
             isSelected={index === selectedIndex}
           />
         ))}

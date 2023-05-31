@@ -1,7 +1,8 @@
 import React from "react";
+import Header from "../ContentItemMaterials/header";
 
 function Customer() {
-  return <div>customer</div>;
+  return <Header content="Quản lý Khách hàng" />;
 }
 
 export default Customer;
