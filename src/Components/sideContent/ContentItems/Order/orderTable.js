@@ -2,10 +2,8 @@ import React from "react";
 import {
   Paper,
   Table,
-  TableRow,
   TableHead,
   TableContainer,
-  TableCell,
   TableBody,
 } from "@mui/material";
 import OrderItem from "./orderItem";

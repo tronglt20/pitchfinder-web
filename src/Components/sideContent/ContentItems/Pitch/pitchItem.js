@@ -1,32 +1,49 @@
 import * as React from "react";
+import PitchItemDetail from "./pitchItemDetail";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Box, Typography, CardMedia, CardContent } from "@mui/material";
 
-export default function PitchItem() {
+export default function PitchItem(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleClose = () => {
+    setExpanded(false);
+  };
 
   return (
-    <Card sx={{ maxWidth: 300 }}>
-      <CardMedia
-        component="img"
-        height="100px"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-        sx={{ padding: "20px", bgcolor: "#cccccc" }}
-      />
-      <CardContent>
-        <Typography>
-          <h2>Sân A</h2>
-          <p>Description</p>
-          <hr />
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Card
+        sx={{ width: 300, marginBottom: "40px", cursor: "pointer" }}
+        onClick={handleExpandClick}
+      >
+        <CardMedia
+          component="img"
+          height="80px"
+          image="/static/images/cards/paella.jpg"
+          alt="Paella dish"
+          sx={{ padding: "20px", bgcolor: "#cccccc" }}
+        />
+        <CardContent>
+          <Typography>
+            <h3>{props.name}</h3>
+            <hr />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                height: "30px",
+              }}
+            >
+              <p>Loại: {props.type}</p>
+              <p>Giá: {props.price}$</p>
+            </Box>
+          </Typography>
+        </CardContent>
+      </Card>
+      <PitchItemDetail isOpen={expanded} handleCloseDialog={handleClose} />
+    </>
   );
 }
