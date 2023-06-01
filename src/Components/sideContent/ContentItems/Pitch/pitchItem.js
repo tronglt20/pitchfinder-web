@@ -49,7 +49,11 @@ export default function PitchItem(props) {
           </Typography>
         </CardContent>
       </Card>
-      <PitchItemDetail isOpen={expanded} handleCloseDialog={handleClose} />
+      <PitchItemDetail
+        isOpen={expanded}
+        handleCloseDialog={handleClose}
+        {...props}
+      />
     </>
   );
 }
