@@ -46,7 +46,6 @@ function Pitch() {
         sx={{
           marginTop: "30px",
           display: "flex",
-          justifyContent: "space-between",
           flexWrap: "wrap",
         }}
       >

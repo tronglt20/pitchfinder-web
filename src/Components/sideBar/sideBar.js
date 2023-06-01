@@ -33,6 +33,7 @@ export default function SideBar() {
       sx={{
         width: "100%",
         maxWidth: 360,
+        minWidth: 300,
         bgcolor: "#EDF0F7",
         height: "100vh",
       }}

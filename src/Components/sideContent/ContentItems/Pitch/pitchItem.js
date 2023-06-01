@@ -16,7 +16,12 @@ export default function PitchItem(props) {
   return (
     <>
       <Card
-        sx={{ width: 300, marginBottom: "40px", cursor: "pointer" }}
+        sx={{
+          width: 300,
+          marginBottom: "40px",
+          cursor: "pointer",
+          marginRight: 4,
+        }}
         onClick={handleExpandClick}
       >
         <CardMedia
@@ -28,7 +33,8 @@ export default function PitchItem(props) {
         />
         <CardContent>
           <Typography>
-            <h3>{props.name}</h3>
+            <h4 style={{ margin: 0 }}>{props.name}</h4>
+            <p style={{ margin: 0 }}>{props.description}</p>
             <hr />
             <Box
               sx={{
