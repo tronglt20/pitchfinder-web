@@ -12,19 +12,19 @@ export default function SideBar() {
   const sideBarItems = [
     {
       name: "general",
-      description: "Tổng quan",
+      description: "Dasboard",
     },
     {
       name: "order",
-      description: "Quản lý Đơn đặt sân",
+      description: "Order",
     },
     {
       name: "pitch",
-      description: "Quản lý Sân bóng",
+      description: "Pitch",
     },
     {
       name: "customer",
-      description: "Quản lý Khách hàng",
+      description: "Customer",
     },
   ];
 

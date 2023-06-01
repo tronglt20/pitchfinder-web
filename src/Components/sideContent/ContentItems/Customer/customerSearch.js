@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { Box, Stack } from "@mui/material";
 
-function PitchSearch() {
+function CustomerSearch() {
   return (
     <Box
       sx={{
@@ -28,4 +28,4 @@ const filterIconStyles = {
   marginLeft: "10px",
 };
 
-export default PitchSearch;
+export default CustomerSearch;

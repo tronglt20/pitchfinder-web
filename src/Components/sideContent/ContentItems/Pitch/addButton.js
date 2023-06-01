@@ -32,9 +32,7 @@ export default function AddButton() {
         onClick={handleExpandClick}
       >
         <AddCircleOutlineIcon />
-        <p>
-          Thêm thông tin <br /> sân mới
-        </p>
+        <p>Add New</p>
       </Card>
       <AddPitchPopup isOpen={expanded} handleCloseDialog={handleClose} />
     </>

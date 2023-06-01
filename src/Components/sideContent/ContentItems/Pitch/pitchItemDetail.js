@@ -68,14 +68,14 @@ function PitchItemDetail(props) {
             >
               {props.name}
             </Typography>
-            <p style={label}>Mô tả</p>
+            <p style={label}>Description:</p>
             <p>{props.description}</p>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <div>
-                <p style={label}>Loại:</p> {props.type}
+                <p style={label}>Type:</p> {props.type}
               </div>
               <div>
-                <p style={label}>Giá:</p> {props.price}
+                <p style={label}>Price:</p> {props.price}
               </div>
             </Box>
           </Box>
@@ -99,11 +99,11 @@ function PitchItemDetail(props) {
               fontWeight: 600,
             }}
           >
-            Thao tác
+            Operation
           </Box>
           <Box sx={{ display: "flex" }}>
-            <p style={button}>Tuỳ chỉnh</p>
-            <p style={button}>Xoá</p>
+            <p style={button}>Edit</p>
+            <p style={button}>Delete</p>
           </Box>
         </Box>
         <Box>Lịch sử đặt sân ...</Box>

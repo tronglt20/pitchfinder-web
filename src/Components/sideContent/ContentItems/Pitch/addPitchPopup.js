@@ -75,7 +75,7 @@ function AddPitchPopup(props) {
             marginBottom: "24px",
           }}
         >
-          Thêm thông tin sân mới
+          Add New Pitch
         </Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <Box
@@ -86,7 +86,7 @@ function AddPitchPopup(props) {
             }}
           >
             <div>
-              <p style={inputLabel}>Tên sân</p>
+              <p style={inputLabel}>Name</p>
               <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -97,7 +97,7 @@ function AddPitchPopup(props) {
               />
             </div>
             <div>
-              <p style={inputLabel}>Loại</p>
+              <p style={inputLabel}>Type</p>
               <FormControl
                 sx={{ width: "250px", margin: 0 }}
                 fullWidth
@@ -114,7 +114,7 @@ function AddPitchPopup(props) {
           </Box>
           <Box sx={{ marginBottom: "24px" }}>
             <div>
-              <p style={inputLabel}>Mô tả</p>
+              <p style={inputLabel}>Description</p>
               <TextField
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -127,7 +127,7 @@ function AddPitchPopup(props) {
           </Box>
           <Box sx={{ marginBottom: "24px" }}>
             <div>
-              <p style={inputLabel}>Giá</p>
+              <p style={inputLabel}>Price</p>
               <TextField
                 type="number"
                 value={price}
@@ -139,7 +139,7 @@ function AddPitchPopup(props) {
           </Box>
           <Box sx={{ marginBottom: "24px" }}>
             <div>
-              <p style={inputLabel}>Ảnh bìa</p>
+              <p style={inputLabel}>Background</p>
               <TextField
                 type="file"
                 accept="image/*"
@@ -159,10 +159,10 @@ function AddPitchPopup(props) {
               }}
               onClick={handleCancel}
             >
-              Huỷ
+              Cancel
             </Button>
             <Button type="submit" variant="contained" color="primary">
-              Thêm mới
+              Submit
             </Button>
           </Box>
         </Box>

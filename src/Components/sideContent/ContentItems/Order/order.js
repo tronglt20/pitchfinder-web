@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 function Order() {
   return (
     <Box>
-      <Header content="Quản lý Đơn đặt sân" />
+      <Header content="Order Management" />
       <OrderSearch />
       <OrderTable />
     </Box>

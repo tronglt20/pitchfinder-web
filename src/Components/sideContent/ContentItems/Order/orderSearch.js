@@ -12,7 +12,7 @@ function OrderSearch() {
       }}
     >
       <Stack spacing={1} sx={{ width: 300 }}>
-        <TextField label="Tìm kiếm" />
+        <TextField label="Search" />
       </Stack>
       <FilterAltIcon sx={filterIconStyles} />
     </Box>

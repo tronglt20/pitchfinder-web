@@ -40,7 +40,7 @@ function Pitch() {
 
   return (
     <Box>
-      <Header content="Quản lý Sân bóng" />
+      <Header content="Pitch Management" />
       <PitchSearch />
       <Box
         sx={{

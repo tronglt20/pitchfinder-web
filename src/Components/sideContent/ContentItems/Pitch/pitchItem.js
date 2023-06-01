@@ -43,8 +43,8 @@ export default function PitchItem(props) {
                 height: "30px",
               }}
             >
-              <p>Loại: {props.type}</p>
-              <p>Giá: {props.price}$</p>
+              <p>Type: {props.type}</p>
+              <p>Price: {props.price}$</p>
             </Box>
           </Typography>
         </CardContent>
