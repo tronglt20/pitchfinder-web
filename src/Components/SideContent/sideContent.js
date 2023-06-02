@@ -4,7 +4,7 @@ import General from "./ContentItems/General/general";
 import Order from "./ContentItems/Order/order";
 import Pitch from "./ContentItems/Pitch/pitch";
 import Customer from "./ContentItems/Customer/customer";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 function SideContent() {
   return (
@@ -16,7 +16,7 @@ function SideContent() {
       }}
     >
       <Routes>
-        <Route path="/general" element={<General />} />
+        <Route path="/dashboard" element={<General />} />
         <Route path="/order" element={<Order />} />
         <Route path="/pitch" element={<Pitch />} />
         <Route path="/customer" element={<Customer />} />

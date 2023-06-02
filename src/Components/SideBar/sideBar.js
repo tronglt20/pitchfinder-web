@@ -11,8 +11,8 @@ export default function SideBar() {
 
   const sideBarItems = [
     {
-      name: "general",
-      description: "Dasboard",
+      name: "dashboard",
+      description: "Dashboard",
     },
     {
       name: "order",
