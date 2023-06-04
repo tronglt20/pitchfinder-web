@@ -4,6 +4,7 @@ import General from "./ContentItems/General/general";
 import Order from "./ContentItems/Order/order";
 import Pitch from "./ContentItems/Pitch/pitch";
 import Customer from "./ContentItems/Customer/customer";
+import TestRedux from "./ContentItems/TestRedux/testRedux";
 import { Box } from "@mui/material";
 
 function SideContent() {
@@ -20,6 +21,7 @@ function SideContent() {
         <Route path="/order" element={<Order />} />
         <Route path="/pitch" element={<Pitch />} />
         <Route path="/customer" element={<Customer />} />
+        <Route path="/testRedux" element={<TestRedux />} />
       </Routes>
     </Box>
   );
