@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../../Store";
+import { authActions } from "../../Store/auth";
 
 function AvatarMenu() {
   const dispatch = useDispatch();
