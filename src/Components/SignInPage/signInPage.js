@@ -20,11 +20,14 @@ const defaultTheme = createTheme();
 class SignInPage extends Component {
   handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
-    console.log({
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+    this.props.login({
       email: data.get("email"),
       password: data.get("password"),
     });
-    this.props.login();
   };
 
   render() {
@@ -140,7 +143,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: () => dispatch(authActions.login()),
+    login: (data) => dispatch(authActions.login(data)),
   };
 };
 
