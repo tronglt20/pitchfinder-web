@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { useSelector, useDispatch, connect } from "react-redux";
+import { counterActions } from "../../../../Store";
 import { React, Component } from "react";
 
 // function TestRedux() {
@@ -7,7 +8,7 @@ import { React, Component } from "react";
 //   const couter = useSelector((state) => state.counter);
 
 //   const incrementHandler = () => {
-//     dispatch({ type: "increment" });
+//     dispatch(counterActions.increment());
 //   };
 
 //   const decrementHandler = () => {
@@ -52,15 +53,15 @@ class TestRedux extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state.counter,
+    counter: state.counter.counter,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: () => dispatch({ type: "increment" }),
-    decrement: () => dispatch({ type: "decrement" }),
-    increaseCustom: () => dispatch({ type: "increaseCustom", amount: 4 }),
+    increment: () => dispatch(counterActions.increment()),
+    decrement: () => dispatch(counterActions.decrement()),
+    increaseCustom: () => dispatch(counterActions.increaseCustom(10)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TestRedux);
