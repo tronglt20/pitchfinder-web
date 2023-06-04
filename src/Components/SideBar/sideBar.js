@@ -2,6 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import SideBarItem from "./sideBarItem";
+import AvatarMenu from "./avatarMenu";
+
 export default function SideBar() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const handleListItemClick = (event, index) => {
@@ -34,6 +36,8 @@ export default function SideBar() {
   return (
     <Box
       sx={{
+        display: "flex",
+        flexDirection: "column",
         width: "100%",
         maxWidth: 360,
         minWidth: 300,
@@ -54,8 +58,10 @@ export default function SideBar() {
             isSelected={index === selectedIndex}
           />
         ))}
-        ;
       </List>
+      <Box sx={{ marginTop: "auto" }}>
+        <AvatarMenu />
+      </Box>
     </Box>
   );
 }
