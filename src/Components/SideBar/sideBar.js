@@ -27,10 +27,10 @@ export default function SideBar() {
       name: "customer",
       description: "Customer",
     },
-    {
-      name: "testRedux",
-      description: "Test Redux",
-    },
+    // {
+    //   name: "testRedux",
+    //   description: "Test Redux",
+    // },
   ];
 
   return (

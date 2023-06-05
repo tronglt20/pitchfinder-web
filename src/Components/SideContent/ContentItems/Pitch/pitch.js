@@ -1,42 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../ContentItemMaterials/header";
 import PitchSearch from "./pitchSearch";
 import PitchItem from "./pitchItem";
-import { Box } from "@mui/material";
 import AddButton from "./addButton";
+import { Box } from "@mui/material";
+import { connect } from "react-redux";
+import { pitchActions } from "../../../../Store/pitch";
+import { GetPitchs } from "../../../../Services/pitchService";
 
-function Pitch() {
-  const pitchs = [
-    {
-      name: "Sân A",
-      description: "Khu thứ 5 cạnh khu vực dàn đèn",
-      type: "Sân 5",
-      price: 400,
-      status: "Hoạt động",
-    },
-    {
-      name: "Sân B",
-      description: "Khu thứ 5 cạnh khu vực dàn đèn",
-      type: "Sân 5",
-      price: 400,
-      status: "Hoạt động",
-    },
-    {
-      name: "Sân C",
-      description: "Khu thứ 5 cạnh khu vực dàn đèn",
-      type: "Sân 5",
-      price: 400,
-      status: "Hoạt động",
-    },
-
-    {
-      name: "Sân C",
-      description: "Khu thứ 5 cạnh khu vực dàn đèn",
-      type: "Sân 5",
-      price: 400,
-      status: "Hoạt động",
-    },
-  ];
+const Pitch = (props) => {
+  useEffect(() => {
+    var response = GetPitchs();
+    response.then((data) => {
+      console.log(data);
+    });
+  }, []);
 
   return (
     <Box>
@@ -50,7 +28,7 @@ function Pitch() {
         }}
       >
         <AddButton />
-        {pitchs.map((e, index) => (
+        {props.pitchs.map((e, index) => (
           <PitchItem
             name={e.name}
             description={e.description}
@@ -62,6 +40,18 @@ function Pitch() {
       </Box>
     </Box>
   );
-}
+};
 
-export default Pitch;
+const mapStateToProps = (state) => {
+  return {
+    pitchs: state.pitch.pitchs,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPitchsState: (data) => dispatch(pitchActions.setPitchsState(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pitch);

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import { counterActions } from "../../../../Store/counter";
 import { React, Component } from "react";
 
