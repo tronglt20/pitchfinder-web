@@ -14,19 +14,18 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { authActions } from "../../Store/auth";
+import { Authentication } from "../../Services/iamService";
 
 const defaultTheme = createTheme();
 
 class SignInPage extends Component {
   handleSubmit = (event) => {
+    event.preventDefault();
+
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
-    this.props.login({
-      email: data.get("email"),
-      password: data.get("password"),
+    var response = Authentication(data.get("email"), data.get("password"));
+    response.then((data) => {
+      this.props.login(data);
     });
   };
 
@@ -89,7 +88,6 @@ class SignInPage extends Component {
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
                   autoFocus
                 />
                 <TextField
@@ -100,7 +98,6 @@ class SignInPage extends Component {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="current-password"
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}

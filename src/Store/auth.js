@@ -1,4 +1,3 @@
-import axios from "../axios";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialAuthState = {
@@ -9,23 +8,16 @@ const authSlice = createSlice({
   name: "authentication",
   initialState: initialAuthState,
   reducers: {
-    async login(state, action) {
-      await axios
-        .post("/iam/authentication", {
-          username: action.payload.email,
-          password: action.payload.password,
-        })
-        .then((response) => {
-          console.log("hello");
-          state.isAuthentication = true;
-          localStorage.setItem("accessToken", response.payload.accessToken);
-        })
-        .catch((error) => {
-          state.isAuthentication = false;
-        });
+    login(state, actions) {
+      state.isAuthentication = true;
+      localStorage.setItem(
+        "accessToken",
+        JSON.stringify(actions.payload.data.accessToken)
+      );
     },
     logout(state) {
       state.isAuthentication = false;
+      localStorage.removeItem("accessToken");
     },
   },
 });
