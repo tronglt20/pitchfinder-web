@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { GetStoreAPI } from "../../Services/pitchService";
 import { pitchActions } from "../../Store/pitch";
@@ -15,12 +15,37 @@ import {
 } from "@mui/material";
 
 const ProfilePopup = (props) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedStore, setEditedStore] = useState({});
+
   useEffect(() => {
     var response = GetStoreAPI();
     response.then((data) => {
       props.setStoreState(data);
+      setEditedStore(data);
     });
   }, []);
+
+  const handleEdit = () => {
+    setIsEditMode(true);
+  };
+
+  const handleSave = () => {
+    setIsEditMode(false);
+  };
+
+  const handleCancel = () => {
+    setEditedStore(props.store);
+    setIsEditMode(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedStore((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <Dialog
@@ -46,41 +71,85 @@ const ProfilePopup = (props) => {
         >
           Store Profile
         </Typography>
-        <Box>
+        <Box
+          sx={{
+            display: "grid",
+            gap: "16px",
+            gridTemplateColumns: "1fr",
+          }}
+        >
           <TextField
             label="Name"
-            value={props.store.name}
+            value={isEditMode ? editedStore.name : props.store.name}
             fullWidth
-            disabled
-            sx={{ marginBottom: "16px" }}
+            disabled={!isEditMode}
+            name="name"
+            onChange={handleInputChange}
           />
           <TextField
             label="Address"
-            value={props.store.address}
+            value={isEditMode ? editedStore.address : props.store.address}
             fullWidth
-            disabled
-            sx={{ marginBottom: "16px" }}
+            disabled={!isEditMode}
+            name="address"
+            onChange={handleInputChange}
           />
           <TextField
             label="Phone Number"
-            value={props.store.phoneNumber}
+            value={
+              isEditMode ? editedStore.phoneNumber : props.store.phoneNumber
+            }
             fullWidth
-            disabled
-            sx={{ marginBottom: "16px" }}
+            disabled={!isEditMode}
+            name="phoneNumber"
+            onChange={handleInputChange}
           />
           <TextField
             label="Opening Time"
-            value={props.store.open}
+            value={isEditMode ? editedStore.open : props.store.open}
             fullWidth
-            disabled
-            sx={{ marginBottom: "16px" }}
+            disabled={!isEditMode}
+            name="open"
+            onChange={handleInputChange}
           />
           <TextField
             label="Closing Time"
-            value={props.store.close}
+            value={isEditMode ? editedStore.close : props.store.close}
             fullWidth
-            disabled
+            disabled={!isEditMode}
+            name="close"
+            onChange={handleInputChange}
           />
+          {!isEditMode ? (
+            <Button
+              variant="contained"
+              onClick={handleEdit}
+              sx={{ backgroundColor: "#4caf50", color: "#ffffff" }}
+            >
+              Edit
+            </Button>
+          ) : (
+            <div>
+              <Button
+                variant="contained"
+                onClick={handleSave}
+                sx={{
+                  backgroundColor: "#4caf50",
+                  color: "#ffffff",
+                  marginRight: "8px",
+                }}
+              >
+                Save
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={handleCancel}
+                sx={{ borderColor: "#4caf50", color: "#4caf50" }}
+              >
+                Cancel
+              </Button>
+            </div>
+          )}
         </Box>
       </DialogContent>
     </Dialog>
