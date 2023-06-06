@@ -17,10 +17,12 @@ const pitchSlice = createSlice({
       state.termPitchs.push(newPitch);
     },
     getPitchsByFilter(state, actions) {
-      const filterValue = actions.payload;
-      if (filterValue) {
-        state.pitchs = state.pitchs.filter((pitch) =>
-          pitch.name.includes(filterValue)
+      const searchValue = actions.payload.search;
+      const typeValue = actions.payload.type;
+
+      if (searchValue || typeValue) {
+        state.pitchs = state.termPitchs.filter(
+          (pitch) => pitch.name.includes(searchValue) || pitch.type == typeValue
         );
       } else {
         state.pitchs = state.termPitchs;
