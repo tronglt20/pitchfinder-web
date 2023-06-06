@@ -5,8 +5,12 @@ const pitchSlice = createSlice({
   initialState: {
     pitchs: [],
     termPitchs: [],
+    store: {},
   },
   reducers: {
+    setStoreState(state, actions) {
+      state.store = actions.payload.data;
+    },
     setPitchsState(state, actions) {
       state.pitchs = actions.payload.data;
       state.termPitchs = actions.payload.data;

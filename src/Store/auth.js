@@ -3,6 +3,7 @@ const token = localStorage.getItem("accessToken");
 
 const initialAuthState = {
   isAuthentication: token ? true : false,
+  user: {},
 };
 
 const authSlice = createSlice({
@@ -16,6 +17,9 @@ const authSlice = createSlice({
     logout(state) {
       state.isAuthentication = false;
       localStorage.removeItem("accessToken");
+    },
+    setCurrentUser(state, actions) {
+      state.user = actions.payload.data;
     },
   },
 });

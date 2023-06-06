@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Stack,
@@ -8,14 +8,29 @@ import {
   ClickAwayListener,
   Button,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
+import ProfilePopup from "./profilePopup";
+import { GetCurrentUserAPI } from "../../Services/iamService";
 
-function AvatarMenu() {
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.auth.isAuthentication);
+const AvatarMenu = (props) => {
+  useEffect(() => {
+    var response = GetCurrentUserAPI();
+    response.then((data) => {
+      props.setCurrentUser(data);
+    });
+  }, []);
+
+  const [profileExpanded, setProfileExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setAnchorEl(null);
+    setProfileExpanded(!profileExpanded);
+  };
+
   const logoutHandler = () => {
-    dispatch(authActions.logout());
+    props.logout();
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -23,6 +38,7 @@ function AvatarMenu() {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
   const handleClose = () => {
+    setProfileExpanded(false);
     setAnchorEl(null);
   };
 
@@ -35,21 +51,38 @@ function AvatarMenu() {
       </Stack>
       <div>
         <Button id="composition-button" onClick={handleClick}>
-          tronglt2001@gmail.com
+          {props.user.email}
         </Button>
         <Popper open={open} anchorEl={anchorEl} placement="bottom-end">
           <ClickAwayListener onClickAway={handleClose}>
             <Paper sx={{ display: "flex", flexDirection: "column" }}>
-              <Button sx={{ p: "12px 52px" }}>Profile</Button>
-              <Button sx={{ p: "12px 52px" }} onClick={logoutHandler}>
+              <Button sx={{ p: "12px 20px" }} onClick={handleExpandClick}>
+                Store Profile
+              </Button>
+              <Button sx={{ p: "12px 20px" }} onClick={logoutHandler}>
                 Logout
               </Button>
             </Paper>
           </ClickAwayListener>
         </Popper>
       </div>
+
+      <ProfilePopup isOpen={profileExpanded} handleCloseDialog={handleClose} />
     </Box>
   );
-}
+};
 
-export default AvatarMenu;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUser: (data) => dispatch(authActions.setCurrentUser(data)),
+    logout: () => dispatch(authActions.logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AvatarMenu);

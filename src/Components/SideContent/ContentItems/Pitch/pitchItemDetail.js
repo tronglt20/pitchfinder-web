@@ -63,19 +63,26 @@ function PitchItemDetail(props) {
                 fontSize: "32px",
                 lineHeight: "130%",
                 fontWeight: 700,
-                marginBottom: "24px",
+                marginBottom: "18px",
               }}
             >
               {props.name}
             </Typography>
-            <p style={label}>Description:</p>
-            <p>{props.description}</p>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <p style={label}>Description:</p> {props.description}
+            </div>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "10px",
+              }}
+            >
               <div>
                 <p style={label}>Type:</p> {props.type}
               </div>
               <div>
-                <p style={label}>Price:</p> {props.price}
+                <p style={label}>Price:</p> {props.price}$
               </div>
             </Box>
           </Box>
