@@ -7,14 +7,11 @@ const pitchSlice = createSlice({
   },
   reducers: {
     setPitchsState(state, actions) {
-      state.pitchs = actions.payload;
+      state.pitchs = actions.payload.data;
     },
     addPitch(state, actions) {
       const newPitch = actions.payload;
-      const existed = state.items.find((_) => _.id == newPitch.id);
-      if (!existed) {
-        state.items.push(newPitch);
-      }
+      state.pitchs.push(newPitch);
     },
   },
 });

@@ -1,11 +1,16 @@
 import axios from "../axios";
 
-const GetPitchs = () => {
+const GetPitchsAPI = () => {
   return axios.get("/pitch/store/pitchs");
 };
 
-const AddPitch = (name, description, price, type) => {
-  return axios.post("/pitch/store/pitchs", { name, description, price, type });
+const AddPitchAPI = (name, description, price, type) => {
+  return axios.post("/pitch/store/pitchs", {
+    name,
+    description,
+    price,
+    type,
+  });
 };
 
-export { GetPitchs, AddPitch };
+export { GetPitchsAPI, AddPitchAPI };

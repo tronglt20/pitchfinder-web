@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_API_ENDPOINT,
 });
 
-const token = JSON.parse(localStorage.getItem("accessToken"));
+const token = localStorage.getItem("accessToken");
 
 if (token) {
   instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;

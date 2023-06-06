@@ -6,13 +6,14 @@ import AddButton from "./addButton";
 import { Box } from "@mui/material";
 import { connect } from "react-redux";
 import { pitchActions } from "../../../../Store/pitch";
-import { GetPitchs } from "../../../../Services/pitchService";
+import { GetPitchsAPI } from "../../../../Services/pitchService";
+import { PitchTypeEnums } from "../../../../enum";
 
 const Pitch = (props) => {
   useEffect(() => {
-    var response = GetPitchs();
+    var response = GetPitchsAPI();
     response.then((data) => {
-      console.log(data);
+      props.setPitchsState(data);
     });
   }, []);
 
@@ -33,7 +34,7 @@ const Pitch = (props) => {
             name={e.name}
             description={e.description}
             price={e.price}
-            type={e.type}
+            type={PitchTypeEnums[e.type]}
             status={e.status}
           />
         ))}

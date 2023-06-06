@@ -28,7 +28,7 @@ export default function AddButton() {
           flexDirection: "column",
           cursor: "pointer",
           marginRight: 4,
-          height: "245px",
+          height: "260px",
         }}
         onClick={handleExpandClick}
       >

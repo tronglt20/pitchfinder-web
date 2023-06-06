@@ -1,5 +1,10 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
+import { AddPitchAPI } from "../../../../Services/pitchService";
+import { PitchTypeEnums } from "../../../../enum";
+import { pitchActions } from "../../../../Store/pitch";
+
+import { connect, useDispatch } from "react-redux";
 import {
   Box,
   Dialog,
@@ -21,6 +26,7 @@ const inputLabel = {
 };
 
 function AddPitchPopup(props) {
+  const dispatch = useDispatch();
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [type, setType] = React.useState("");
@@ -29,28 +35,25 @@ function AddPitchPopup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      name,
-      description,
-      type,
-      price,
-      attachment,
+    var response = AddPitchAPI(name, description, price, type);
+    response.then((data) => {
+      dispatch(pitchActions.addPitch({ name, description, price, type }));
+      resetPopupInput();
+      props.handleCloseDialog();
     });
-    // Reset the form fields
-    setName("");
-    setDescription("");
-    setType("");
-    setPrice("");
-    setAttachment("");
   };
 
   const handleCancel = () => {
+    resetPopupInput();
+    props.handleCloseDialog();
+  };
+
+  const resetPopupInput = () => {
     setName("");
     setDescription("");
     setType("");
     setPrice("");
     setAttachment("");
-    props.handleCloseDialog();
   };
 
   return (
@@ -105,9 +108,9 @@ function AddPitchPopup(props) {
                 required
               >
                 <Select value={type} onChange={(e) => setType(e.target.value)}>
-                  <MenuItem value={5}>Sân 5</MenuItem>
-                  <MenuItem value={7}>Sân 7</MenuItem>
-                  <MenuItem value={11}>Sân 11</MenuItem>
+                  <MenuItem value={1}>{PitchTypeEnums[1]}</MenuItem>
+                  <MenuItem value={2}>{PitchTypeEnums[2]}</MenuItem>
+                  <MenuItem value={3}>{PitchTypeEnums[3]}</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -145,7 +148,6 @@ function AddPitchPopup(props) {
                 accept="image/*"
                 onChange={(e) => setAttachment(e.target.files[0])}
                 fullWidth
-                required
               />
             </div>
           </Box>
@@ -170,4 +172,5 @@ function AddPitchPopup(props) {
     </Dialog>
   );
 }
-export default AddPitchPopup;
+
+export default connect()(AddPitchPopup);
