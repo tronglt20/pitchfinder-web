@@ -3,7 +3,7 @@ import { TableRow, TableCell } from "@mui/material";
 
 function OrderItem(props) {
   return (
-    <TableRow key={props.key}>
+    <TableRow key={props.orderId}>
       <TableCell sx={{ width: "100px" }} align="left">
         {props.orderId}
       </TableCell>

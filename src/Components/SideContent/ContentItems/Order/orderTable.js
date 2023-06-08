@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import OrderItem from "./orderItem";
+import { orderActions } from "../../../../Store/order";
+import { connect } from "react-redux";
+import { GetOrderAPI } from "../../../../Services/orderService";
+
 import {
   Paper,
   Table,
@@ -6,27 +11,15 @@ import {
   TableContainer,
   TableBody,
 } from "@mui/material";
-import OrderItem from "./orderItem";
 
-function createData(id, name, date, duration, pitch) {
-  return { id, name, date, duration, pitch };
-}
+const OrderTable = (props) => {
+  useEffect(() => {
+    var response = GetOrderAPI();
+    response.then((data) => {
+      props.setOrderState(data);
+    });
+  }, []);
 
-const rows = [
-  createData(
-    "#001",
-    "ldjhfalksdjhfaksjhflkjsahd",
-    "ldjhfalksdjhfaksjhflkjsahd",
-    67,
-    4.0
-  ),
-  createData("#001", 237, 9.0, 37, 4.3),
-  createData("#001", 262, 16.0, 24, 6.0),
-  createData("#001", 305, 3.7, 67, 4.3),
-  createData("#001", 356, 16.0, 49, 3.9),
-];
-
-function OrderTable() {
   return (
     <TableContainer sx={{ marginTop: "30px" }} component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -40,19 +33,33 @@ function OrderTable() {
           />
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {props.orders.map((item) => (
             <OrderItem
-              orderId={row.id}
-              customer={row.name}
-              date={row.date}
-              times={row.duration}
-              pitch={row.pitch}
+              orderId={item.orderId}
+              customer={item.createdByName}
+              customerId={item.createdById}
+              date={item.date}
+              times={item.open - item.close}
+              pitch={item.pitchName}
+              pitchId={item.pitchId}
             />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
 
-export default OrderTable;
+const mapStateToProps = (state) => {
+  return {
+    orders: state.order.orders,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setOrderState: (data) => dispatch(orderActions.setOrderState(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderTable);
