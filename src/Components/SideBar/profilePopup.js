@@ -2,27 +2,17 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { GetStoreAPI } from "../../Services/pitchService";
 import { pitchActions } from "../../Store/pitch";
-import { connect, useDispatch } from "react-redux";
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  TextField,
-  Select,
-  FormControl,
-  MenuItem,
-  Button,
-} from "@mui/material";
+import { connect } from "react-redux";
+import { UpdateStoreAPI } from "../../Services/pitchService";
+import { Box, Dialog, DialogContent, TextField, Button } from "@mui/material";
 
 const ProfilePopup = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [editedStore, setEditedStore] = useState({});
-
+  const [editedStore, setEditedStore] = useState(props.store);
   useEffect(() => {
     var response = GetStoreAPI();
     response.then((data) => {
       props.setStoreState(data);
-      setEditedStore(data);
     });
   }, []);
 
@@ -30,8 +20,20 @@ const ProfilePopup = (props) => {
     setIsEditMode(true);
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     setIsEditMode(false);
+    console.log(editedStore);
+    var response = UpdateStoreAPI(
+      editedStore.name,
+      editedStore.address,
+      editedStore.phoneNumber,
+      editedStore.open,
+      editedStore.close
+    );
+    response.then((data) => {
+      props.setStoreState(editedStore);
+    });
   };
 
   const handleCancel = () => {

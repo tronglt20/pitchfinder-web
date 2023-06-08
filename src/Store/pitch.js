@@ -9,7 +9,9 @@ const pitchSlice = createSlice({
   },
   reducers: {
     setStoreState(state, actions) {
-      state.store = actions.payload.data;
+      state.store = actions.payload.data
+        ? actions.payload.data
+        : actions.payload;
     },
     setPitchsState(state, actions) {
       state.pitchs = actions.payload.data;
