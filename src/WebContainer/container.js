@@ -7,19 +7,19 @@ import { Box, Stack } from "@mui/material";
 import { useSelector } from "react-redux";
 
 function Container() {
-  var isAuth = useSelector((state) => state.auth.isAuthentication);
-  return (
-    <Box sx={{ width: "100%" }}>
-      {isAuth ? (
-        <Stack direction="row" alignItems="flex-start">
-          <SideBar />
-          <SideContent />
-        </Stack>
-      ) : (
+	// var isAuth = useSelector((state) => state.auth.isAuthentication);
+	return (
+		<Box sx={{ width: "100%" }}>
+			{/* {isAuth ? ( */}
+			<Stack direction="row" alignItems="flex-start">
+				<SideBar />
+				<SideContent />
+			</Stack>
+			{/* ) : (
         <SignInPage />
-      )}
-    </Box>
-  );
+      )} */}
+		</Box>
+	);
 }
 
 export default Container;
