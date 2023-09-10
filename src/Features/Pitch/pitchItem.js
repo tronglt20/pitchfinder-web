@@ -1,10 +1,10 @@
-import * as React from "react";
-import PitchItemDetail from "./pitchItemDetail";
+import React, {useState} from "react";
+import {PitchItemDetail} from "./pitchItemDetail";
 import Card from "@mui/material/Card";
 import { Box, Typography, CardMedia, CardContent } from "@mui/material";
 
-export default function PitchItem(props) {
-  const [expanded, setExpanded] = React.useState(false);
+export const PitchItem = (props) => {
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, {useState} from "react";
 import AddPitchPopup from "./addPitchPopup";
 import Card from "@mui/material/Card";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-export default function AddButton() {
-  const [expanded, setExpanded] = React.useState(false);
+export const AddButton = () => {
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

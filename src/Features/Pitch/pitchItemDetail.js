@@ -30,7 +30,7 @@ const button = {
   marginLeft: "10px",
 };
 
-function PitchItemDetail(props) {
+export const PitchItemDetail = (props) => {
   return (
     <Dialog
       open={props.isOpen}
@@ -118,5 +118,3 @@ function PitchItemDetail(props) {
     </Dialog>
   );
 }
-
-export default PitchItemDetail;

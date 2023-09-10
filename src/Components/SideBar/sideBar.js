@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, {useState} from "react";
 import SideBarItem from "./sideBarItem";
 import AvatarMenu from "./avatarMenu";
 import { Link } from "react-router-dom";
 
 export default function SideBar() {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };

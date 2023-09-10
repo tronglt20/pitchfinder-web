@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { Box, Stack } from "@mui/material";
 
-function OrderSearch() {
+export const OrderSearch = () => {
   return (
     <Box
       sx={{
@@ -27,5 +27,3 @@ const filterIconStyles = {
   bgcolor: "#EDF0F7",
   marginLeft: "10px",
 };
-
-export default OrderSearch;

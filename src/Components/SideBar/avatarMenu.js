@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState ,useEffect } from "react";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
@@ -13,7 +13,7 @@ const AvatarMenu = (props) => {
     });
   }, []);
 
-  const [profileExpanded, setProfileExpanded] = React.useState(false);
+  const [profileExpanded, setProfileExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setAnchorEl(null);
@@ -24,7 +24,7 @@ const AvatarMenu = (props) => {
     props.logout();
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };

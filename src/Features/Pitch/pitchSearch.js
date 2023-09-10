@@ -9,7 +9,7 @@ import { pitchActions } from "../../Store/pitch";
 import { connect, useDispatch } from "react-redux";
 import { PitchTypeEnums } from "../../enum";
 
-function PitchSearch() {
+const PitchSearch = () => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);

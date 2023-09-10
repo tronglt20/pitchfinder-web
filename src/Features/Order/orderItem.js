@@ -1,7 +1,7 @@
 import React from "react";
 import { TableRow, TableCell } from "@mui/material";
 
-function OrderItem(props) {
+export const OrderItem = (props) => {
   return (
     <TableRow key={props.orderId}>
       <TableCell sx={{ width: "100px" }} align="left">
@@ -22,5 +22,3 @@ function OrderItem(props) {
     </TableRow>
   );
 }
-
-export default OrderItem;

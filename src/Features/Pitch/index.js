@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Header from "../../Components/ContentItemMaterials/header";
 import PitchSearch from "./pitchSearch";
-import PitchItem from "./pitchItem";
-import AddButton from "./addButton";
+import { PitchItem } from "./pitchItem";
+import { AddButton } from "./addButton";
 import { Box } from "@mui/material";
 import { connect } from "react-redux";
 import { pitchActions } from "../../Store/pitch";
