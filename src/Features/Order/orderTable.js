@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import OrderItem from "./orderItem";
-import { orderActions } from "../../../../Store/order";
+import { orderActions } from "../../Store/order";
 import { connect } from "react-redux";
-import { GetOrderAPI } from "../../../../Services/orderService";
+import { GetOrderAPI } from "../../Services/orderService";
 
 import {
   Paper,

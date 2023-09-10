@@ -1,11 +1,11 @@
-import { Box } from "@mui/system";
-import Container from "./WebContainer/container.js";
+import AppRouter from "./Routes/app.router.js";
+import "./App.css";
 
 function App() {
   return (
-    <Box sx={{ height: "100vh" }}>
-      <Container />
-    </Box>
+    <div className="App">
+      <AppRouter/>
+    </div>
   );
 }
 

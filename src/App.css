@@ -1,0 +1,7 @@
+* {
+	font-family: "Open Sans", sans-serif;
+}
+
+.gradient {
+	background: linear-gradient(132.6deg, #00b14f 23.3%, #001e20 84.7%);
+}

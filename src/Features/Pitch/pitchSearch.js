@@ -5,9 +5,9 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Box, Stack } from "@mui/material";
-import { pitchActions } from "../../../../Store/pitch";
+import { pitchActions } from "../../Store/pitch";
 import { connect, useDispatch } from "react-redux";
-import { PitchTypeEnums } from "../../../../enum";
+import { PitchTypeEnums } from "../../enum";
 
 function PitchSearch() {
   const dispatch = useDispatch();

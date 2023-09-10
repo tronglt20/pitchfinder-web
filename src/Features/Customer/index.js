@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../../ContentItemMaterials/header";
 import CustomerSearch from "./customerSearch";
 import CustomerTable from "./customerTable";
 import { Box } from "@mui/material";
+import Header from "../../Components/ContentItemMaterials/header";
 
 function Customer() {
   return (

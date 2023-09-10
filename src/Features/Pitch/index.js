@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import Header from "../../ContentItemMaterials/header";
+import Header from "../../Components/ContentItemMaterials/header";
 import PitchSearch from "./pitchSearch";
 import PitchItem from "./pitchItem";
 import AddButton from "./addButton";
 import { Box } from "@mui/material";
 import { connect } from "react-redux";
-import { pitchActions } from "../../../../Store/pitch";
-import { GetPitchsAPI } from "../../../../Services/pitchService";
-import { PitchTypeEnums } from "../../../../enum";
+import { pitchActions } from "../../Store/pitch";
+import { GetPitchsAPI } from "../../Services/pitchService";
+import { PitchTypeEnums } from "../../enum";
 
 const Pitch = (props) => {
   useEffect(() => {

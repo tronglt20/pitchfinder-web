@@ -1,8 +1,8 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { AddPitchAPI } from "../../../../Services/pitchService";
-import { PitchTypeEnums } from "../../../../enum";
-import { pitchActions } from "../../../../Store/pitch";
+import { AddPitchAPI } from "../../Services/pitchService";
+import { PitchTypeEnums } from "../../enum";
+import { pitchActions } from "../../Store/pitch";
 
 import { connect, useDispatch } from "react-redux";
 import {

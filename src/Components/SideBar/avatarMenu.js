@@ -1,13 +1,4 @@
 import React, { useEffect } from "react";
-import {
-  Box,
-  Stack,
-  Avatar,
-  Popper,
-  Paper,
-  ClickAwayListener,
-  Button,
-} from "@mui/material";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
@@ -45,30 +36,45 @@ const AvatarMenu = (props) => {
   const open = Boolean(anchorEl);
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", padding: "32px 24px" }}>
-      <Stack direction="row" spacing={2}>
-        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-      </Stack>
-      <div>
-        <Button id="composition-button" onClick={handleClick}>
-          {props.user.email}
-        </Button>
-        <Popper open={open} anchorEl={anchorEl} placement="bottom-end">
-          <ClickAwayListener onClickAway={handleClose}>
-            <Paper sx={{ display: "flex", flexDirection: "column" }}>
-              <Button sx={{ p: "12px 20px" }} onClick={handleExpandClick}>
-                Store Profile
-              </Button>
-              <Button sx={{ p: "12px 20px" }} onClick={logoutHandler}>
-                Logout
-              </Button>
-            </Paper>
-          </ClickAwayListener>
-        </Popper>
+    <div className="flex items-center p-8">
+      <div className="space-x-2">
+        <img
+          className="w-10 h-10 rounded-full"
+          alt="Cindy Baker"
+          src="/static/images/avatar/3.jpg"
+        />
       </div>
-
+      <div>
+        <button
+          id="composition-button"
+          onClick={handleClick}
+          className="text-blue-500 hover:underline"
+        >
+          {props.user.email}
+        </button>
+        {open && (
+          <div className="relative">
+            <div className="absolute right-0 top-0">
+              <div className="flex flex-col">
+                <button
+                  className="p-3"
+                  onClick={handleExpandClick}
+                >
+                  Store Profile
+                </button>
+                <button
+                  className="p-3"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <ProfilePopup isOpen={profileExpanded} handleCloseDialog={handleClose} />
-    </Box>
+    </div>
   );
 };
 

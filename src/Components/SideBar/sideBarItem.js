@@ -1,23 +1,17 @@
 import * as React from "react";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import AdjustIcon from "@mui/icons-material/Adjust";
 import { Link } from "react-router-dom";
 
 function SideBarItem(props) {
   return (
-    <ListItemButton
-      selected={props.isSelected}
+    <Link 
+      to={props.navigateTo} 
+      className={`flex gap-3 items-center px-5 py-2 rounded-3xl font-medium cursor-pointer text-[16px] ${props.isSelected ? 'bg-primary text-white' : 'hover:bg-primary hover:text-white'} `} 
       onClick={(event) => props.clickHandler(event, props.itemIndex)}
-      component={Link}
-      to={props.navigateTo}
     >
-      <ListItemIcon>
-        <AdjustIcon />
-      </ListItemIcon>
-      <ListItemText primary={props.content} />
-    </ListItemButton>
+      <div className="flex items-center">
+        <span className="text-sm">{props.content}</span>
+      </div>
+    </Link>
   );
 }
 

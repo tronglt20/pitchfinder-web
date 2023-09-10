@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../ContentItemMaterials/header";
+import Header from "../../Components/ContentItemMaterials/header";
 import ColumnChart from "./columnChart";
 import RevenueCard from "./revenueCard";
 import SideBarCard from "./sidebarCard";

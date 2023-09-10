@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import CustomerItem from "./customerItem";
 import { connect } from "react-redux";
-import { GetCustomerAPI } from "../../../../Services/orderService";
-import { orderActions } from "../../../../Store/order";
+import { GetCustomerAPI } from "../../Services/orderService";
+import { orderActions } from "../../Store/order";
 
 import {
   Paper,
