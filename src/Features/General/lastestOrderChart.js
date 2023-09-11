@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import OrderItem from "./orderItem";
+import { OrderItem } from "./orderItem";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-export default function LastestOrderChart(props) {
+export const LastestOrderChart = (props) => {
 	return (
 		<Card sx={{ background: "#cccccc", height: "400px", padding: "24px" }}>
 			<CardContent>

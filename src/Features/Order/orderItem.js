@@ -1,24 +1,13 @@
 import React from "react";
-import { TableRow, TableCell } from "@mui/material";
 
 export const OrderItem = (props) => {
   return (
-    <TableRow key={props.orderId}>
-      <TableCell sx={{ width: "100px" }} align="left">
-        {props.orderId}
-      </TableCell>
-      <TableCell sx={{ width: "250px" }} align="left">
-        {props.customer}
-      </TableCell>
-      <TableCell sx={{ width: "250px" }} align="left">
-        {props.date}
-      </TableCell>
-      <TableCell sx={{ width: "150px" }} align="left">
-        {props.times}
-      </TableCell>
-      <TableCell sx={{ width: "150px" }} align="left">
-        {props.pitch}
-      </TableCell>
-    </TableRow>
+    <tr key={props.orderId} className="bg-white border border-white">
+      <td className="py-2 px-4">{props.orderId}</td>
+      <td className="py-2 px-4">{props.createdByName}</td>
+      <td className="py-2 px-4">{props.date}</td>
+      <td className="py-2 px-4">{props.open - props.close}</td>
+      <td className="py-2 px-4">{props.pitchName}</td>
+    </tr>
   );
 }

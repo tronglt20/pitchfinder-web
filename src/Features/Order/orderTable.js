@@ -4,36 +4,28 @@ import { orderActions } from "../../Store/order";
 import { connect } from "react-redux";
 import { GetOrderAPI } from "../../Services/orderService";
 
-import {
-  Paper,
-  Table,
-  TableHead,
-  TableContainer,
-  TableBody,
-} from "@mui/material";
-
 const OrderTable = (props) => {
-  useEffect(() => {
-    var response = GetOrderAPI();
-    response.then((data) => {
-      props.setOrderState(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   var response = GetOrderAPI();
+  //   response.then((data) => {
+  //     props.setOrderState(data);
+  //   });
+  // }, []);
 
   return (
-    <TableContainer sx={{ marginTop: "30px" }} component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <OrderItem
-            orderId="Id"
-            customer="Name"
-            date="Date"
-            times="Duration"
-            pitch="Pitch"
-          />
-        </TableHead>
-        <TableBody>
-          {props.orders.map((item) => (
+    <div className="mt-5 relative overflow-x-auto shadow-lg rounded-lg">
+      <table className="w-full text-md text-left  text-dark border border-dark" aria-label="Order Management">
+        <thead className="bg-secondary uppercase text-white">
+          <tr>
+            <th className="py-2 px-4">Id</th>
+            <th className="py-2 px-4">Name</th>
+            <th className="py-2 px-4">Date</th>
+            <th className="py-2 px-4">Duration</th>
+            <th className="py-2 px-4">Pitch</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* {props.orders.map((item) => (
             <OrderItem
               orderId={item.orderId}
               customer={item.createdByName}
@@ -43,10 +35,31 @@ const OrderTable = (props) => {
               pitch={item.pitchName}
               pitchId={item.pitchId}
             />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          ))} */}
+          <tr className="bg-white border border-white">
+            <td className="py-2 px-4">1</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+          </tr>
+          <tr className="bg-white border border-white">
+            <td className="py-2 px-4">2</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+          </tr>
+          <tr className="bg-white border border-white">
+            <td className="py-2 px-4">3</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+            <td className="py-2 px-4">Test</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>    
   );
 };
 

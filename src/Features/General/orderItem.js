@@ -4,7 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 
-export default function OrderItem(props) {
+export const OrderItem = (props) => {
   return (
     <Card sx={{ margin: "14px" }}>
       <CardMedia

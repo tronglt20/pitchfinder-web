@@ -1,19 +1,12 @@
-import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import React from "react";;
 
-export default function SideBarCard(props) {
+export const SideBarCard = (props) => {
   return (
-    <Card sx={{ background: "#cccccc", maxHeight: "65px" }}>
-      <CardContent>
-        <Typography gutterBottom component="div">
-          600$
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Total Earning
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className="bg-white shadow-lg rounded">
+      <div className="py-2.5 px-5">
+        <h2 className="text-xl text-secondary font-bold">600$</h2>
+        <p className="text-sm text-gray-700">Total Earning</p>
+      </div>
+    </div>
   );
 }
