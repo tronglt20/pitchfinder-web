@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { AddPitchAPI } from "../../Services/pitchService";
 import { PitchTypeEnums } from "../../enum";
@@ -28,7 +28,7 @@ const inputLabel = {
 function AddPitchPopup(props) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [description, setDescription] =useState("");
+  const [description, setDescription] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [attachment, setAttachment] = useState("");

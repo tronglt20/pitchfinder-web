@@ -4,14 +4,6 @@ import { connect } from "react-redux";
 import { GetCustomerAPI } from "../../Services/orderService";
 import { orderActions } from "../../Store/order";
 
-import {
-  Paper,
-  Table,
-  TableHead,
-  TableContainer,
-  TableBody,
-} from "@mui/material";
-
 const CustomerTable = (props) => {
   // useEffect(() => {
   //   var response = GetCustomerAPI();

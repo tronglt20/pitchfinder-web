@@ -1,9 +1,9 @@
 import React from "react";
-import CustomerSearch from "./customerSearch";
+import {CustomerSearch} from "./customerSearch";
 import CustomerTable from "./customerTable";
 import Header from "../../Components/ContentItemMaterials/header";
 
-function Customer() {
+export const Customer = () => {
   return (
     <>
       <Header content="Customer Management" />
@@ -12,5 +12,3 @@ function Customer() {
     </>
   );
 }
-
-export default Customer;
