@@ -10,49 +10,49 @@ import { GetPitchsAPI } from "../../Services/pitchService";
 import { PitchTypeEnums } from "../../enum";
 
 const Pitch = (props) => {
-  useEffect(() => {
-    var response = GetPitchsAPI();
-    response.then((data) => {
-      props.setPitchsState(data);
-    });
-  }, []);
+	// useEffect(() => {
+	//   var response = GetPitchsAPI();
+	//   response.then((data) => {
+	//     props.setPitchsState(data);
+	//   });
+	// }, []);
 
-  return (
-    <Box>
-      <Header content="Pitch Management" />
-      <PitchSearch />
-      <Box
-        sx={{
-          marginTop: "30px",
-          display: "flex",
-          flexWrap: "wrap",
-        }}
-      >
-        <AddButton />
-        {props.pitchs.map((e, index) => (
-          <PitchItem
-            name={e.name}
-            description={e.description}
-            price={e.price}
-            type={PitchTypeEnums[e.type]}
-            status={e.status}
-          />
-        ))}
-      </Box>
-    </Box>
-  );
+	return (
+		<Box>
+			<Header content="Pitch Management" />
+			<PitchSearch />
+			<Box
+				sx={{
+					marginTop: "30px",
+					display: "flex",
+					flexWrap: "wrap",
+				}}
+			>
+				<AddButton />
+				{props.pitchs.map((e, index) => (
+					<PitchItem
+						name={e.name}
+						description={e.description}
+						price={e.price}
+						type={PitchTypeEnums[e.type]}
+						status={e.status}
+					/>
+				))}
+			</Box>
+		</Box>
+	);
 };
 
 const mapStateToProps = (state) => {
-  return {
-    pitchs: state.pitch.pitchs,
-  };
+	return {
+		pitchs: state.pitch.pitchs,
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    setPitchsState: (data) => dispatch(pitchActions.setPitchsState(data)),
-  };
+	return {
+		setPitchsState: (data) => dispatch(pitchActions.setPitchsState(data)),
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pitch);
