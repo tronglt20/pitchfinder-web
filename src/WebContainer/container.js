@@ -8,18 +8,18 @@ function Container() {
 	var isAuth = useSelector((state) => state.auth.isAuthentication);
 	return (
 		<>
-			{/* {isAuth ? ( */}
-			<>
-				<SideBar />
-				<div className="sm:ml-64 bg-gray-50 min-h-screen">
-					<div className="p-5">
-						<Outlet />
+			{isAuth ? (
+				<>
+					<SideBar />
+					<div className="sm:ml-64 bg-gray-50 min-h-screen">
+						<div className="p-5">
+							<Outlet />
+						</div>
 					</div>
-				</div>
-			</>
-			{/* ) : (
-					<SignInPage />
-				)} */}
+				</>
+			) : (
+				<SignInPage />
+			)}
 		</>
 	);
 }
