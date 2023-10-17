@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { pitchActions } from "../../Store/pitch";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PitchTypeEnums } from "../../enum";
 
 const selection = [
@@ -19,7 +18,7 @@ const PitchSearch = () => {
 	const handleSearchChange = (event) => {
 		const value = event.target.value;
 		setSearchValue(value);
-		dispatch(pitchActions.getPitchsByFilter({ search: value }));
+		// dispatch(pitchActions.getPitchsByFilter({ search: value }));
 	};
 
 	return (
@@ -127,4 +126,4 @@ const filterIconStyles = {
 	marginLeft: "10px",
 };
 
-export default connect()(PitchSearch);
+export default PitchSearch;

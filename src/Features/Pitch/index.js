@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Header from "../../Components/ContentItemMaterials/header";
 import PitchSearch from "./pitchSearch";
 import { PitchItem } from "./pitchItem";
@@ -10,12 +10,20 @@ import { GetPitchsAPI } from "../../Services/pitchService";
 import { PitchTypeEnums } from "../../enum";
 
 const Pitch = (props) => {
-	// useEffect(() => {
-	//   var response = GetPitchsAPI();
-	//   response.then((data) => {
-	//     props.setPitchsState(data);
-	//   });
-	// }, []);
+	const [responseData, setResponseData] = useState([]);
+
+	const getData = useCallback(async () => {
+		try {
+			const response = await GetPitchsAPI();
+			setResponseData(response.data);
+		} catch (error) {
+			console.log("Get Data from Order got error");
+		}
+	}, []);
+
+	useEffect(() => {
+		getData();
+	}, [getData]);
 
 	return (
 		<Box>
@@ -29,13 +37,13 @@ const Pitch = (props) => {
 				}}
 			>
 				<AddButton />
-				{props.pitchs.map((e, index) => (
+				{responseData.map((item, index) => (
 					<PitchItem
-						name={e.name}
-						description={e.description}
-						price={e.price}
-						type={PitchTypeEnums[e.type]}
-						status={e.status}
+						name={item?.name}
+						description={item?.description}
+						price={item?.price}
+						type={PitchTypeEnums[item?.type]}
+						status={item?.status}
 					/>
 				))}
 			</Box>
@@ -43,16 +51,4 @@ const Pitch = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {
-		pitchs: state.pitch.pitchs,
-	};
-};
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		setPitchsState: (data) => dispatch(pitchActions.setPitchsState(data)),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Pitch);
+export default Pitch;

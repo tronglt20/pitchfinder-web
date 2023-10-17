@@ -38,5 +38,6 @@ const pitchSlice = createSlice({
 	},
 });
 
-export const pitchActions = pitchSlice.actions;
+export const { setStoreState, setPitchsState, addPitch, getPitchsByFilter } =
+	pitchSlice.actions;
 export default pitchSlice.reducer;
