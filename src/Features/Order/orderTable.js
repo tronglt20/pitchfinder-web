@@ -1,7 +1,5 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { OrderItem } from "./orderItem";
-import { orderActions } from "../../Store/order";
-import { connect } from "react-redux";
 import { GetOrderAPI } from "../../Services/orderService";
 
 const OrderTable = () => {

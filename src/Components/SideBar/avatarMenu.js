@@ -38,48 +38,7 @@ const AvatarMenu = (props) => {
 		setAnchorEl(null);
 	};
 
-	const open = Boolean(anchorEl);
-
 	return (
-		// <div className="flex items-center p-8">
-		//   <div className="space-x-2">
-		//     <img
-		//       className="w-10 h-10 rounded-full"
-		//       alt="Cindy Baker"
-		//       src="/static/images/avatar/3.jpg"
-		//     />
-		//   </div>
-		//   <div>
-		//     <button
-		//       id="composition-button"
-		//       onClick={handleClick}
-		//       className="text-blue-500 hover:underline"
-		//     >
-		//       {props.user.email}
-		//     </button>
-		//     {open && (
-		//       <div className="relative">
-		//         <div className="absolute right-0 top-0">
-		//           <div className="flex flex-col">
-		//             <button
-		//               className="p-3"
-		//               onClick={handleExpandClick}
-		//             >
-		//               Store Profile
-		//             </button>
-		//             <button
-		//               className="p-3"
-		//               onClick={logoutHandler}
-		//             >
-		//               Logout
-		//             </button>
-		//           </div>
-		//         </div>
-		//       </div>
-		//     )}
-		//   </div>
-		//   <ProfilePopup isOpen={profileExpanded} handleCloseDialog={handleClose} />
-		// </div>
 		<Menu
 			as="div"
 			className="relative inline-block h-fit text-left w-full rounded shadow-lg"

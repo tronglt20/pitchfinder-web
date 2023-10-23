@@ -3,6 +3,7 @@ import { login } from "../../Store/auth";
 import { Authentication } from "../../Services/iamService";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { redirect } from "react-router-dom";
 
 const SignInPage = () => {
 	const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const SignInPage = () => {
 				dispatch(login(response.data));
 				localStorage.setItem("accessToken", response.data.accessToken);
 				toast.success("Login successful!");
+				redirect("/dashboard");
 			} else {
 				toast.error("Error");
 			}

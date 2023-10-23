@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import SignInPage from "../Features/SignInPage";
 
 function Container() {
-	var isAuth = useSelector((state) => state.auth.isAuthentication);
+	const isAuth = useSelector((state) => state.auth.isAuthentication);
 	return (
 		<>
 			{isAuth ? (

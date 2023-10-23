@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import CustomerItem from "./customerItem";
 import { GetCustomerAPI } from "../../Services/customerService";
 
-const CustomerTable = (props) => {
+const CustomerTable = () => {
 	const [responseData, setResponseData] = useState([]);
 
 	const getData = useCallback(async () => {
@@ -10,7 +10,7 @@ const CustomerTable = (props) => {
 			const response = await GetCustomerAPI();
 			setResponseData(response.data);
 		} catch (error) {
-			console.log("Get Data from Order got error");
+			console.log("Get Data from Customer got error");
 		}
 	}, []);
 

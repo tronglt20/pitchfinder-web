@@ -1,50 +1,42 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
+import React, { useState, Fragment } from "react";
 import { AddPitchAPI } from "../../Services/pitchService";
 import { PitchTypeEnums } from "../../enum";
+import { Dialog, Transition } from "@headlessui/react";
+import { addPitch } from "../../Store/pitch";
+import { toast } from "react-toastify";
 
 import { useDispatch } from "react-redux";
-import {
-	Box,
-	Dialog,
-	DialogContent,
-	TextField,
-	Select,
-	FormControl,
-	MenuItem,
-	Button,
-} from "@mui/material";
 
-const inputLabel = {
-	fontFamily: "Inter",
-	fontSize: "14px",
-	fontWeight: 600,
-	lineHeight: "16px",
-	margin: 0,
-	marginBottom: "8px",
-};
-
-function AddPitchPopup(props) {
+function AddPitchPopup({ isOpen, onClose, reload }) {
 	const dispatch = useDispatch();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
-	const [type, setType] = useState("");
+	const [type, setType] = useState(0);
 	const [price, setPrice] = useState("");
 	const [attachment, setAttachment] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		var response = AddPitchAPI(name, description, price, type);
-		response.then((data) => {
-			// dispatch(pitchActions.addPitch({ name, description, price, type }));
-			resetPopupInput();
-			props.handleCloseDialog();
-		});
-	};
-
-	const handleCancel = () => {
-		resetPopupInput();
-		props.handleCloseDialog();
+		try {
+			const response = await AddPitchAPI(
+				name,
+				description,
+				price,
+				Number(type)
+			);
+			console.log(response);
+			if (response.status === 200) {
+				dispatch(addPitch({ name, description, price, type }));
+				toast.success("Add pitch successful!");
+				resetPopupInput();
+				reload();
+				onClose();
+			} else {
+				toast.error("Error");
+			}
+		} catch {
+			toast.error("Got Error at somewhere");
+		}
 	};
 
 	const resetPopupInput = () => {
@@ -56,119 +48,145 @@ function AddPitchPopup(props) {
 	};
 
 	return (
-		<Dialog
-			open={props.isOpen}
-			onClose={props.handleCloseDialog}
-			PaperProps={{
-				sx: {
-					width: "591px",
-					height: "598px",
-					paddingX: "24px",
-					paddingY: "36px",
-				},
-			}}
-		>
-			<DialogContent>
-				<Typography
-					sx={{
-						fontSize: "32px",
-						lineHeight: "130%",
-						fontWeight: 700,
-						marginBottom: "24px",
-					}}
+		<Transition appear show={isOpen} as={Fragment}>
+			<Dialog as="div" className="relative" onClose={onClose}>
+				<Transition.Child
+					as={Fragment}
+					enter="ease-out duration-300"
+					enterFrom="opacity-0"
+					enterTo="opacity-100"
+					leave="ease-in duration-200"
+					leaveFrom="opacity-100"
+					leaveTo="opacity-0"
 				>
-					Add New Pitch
-				</Typography>
-				<Box component="form" onSubmit={handleSubmit}>
-					<Box
-						sx={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "24px",
-						}}
-					>
-						<div>
-							<p style={inputLabel}>Name</p>
-							<TextField
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-								fullWidth
-								margin="normal"
-								required
-								sx={{ width: "250px", margin: 0 }}
-							/>
-						</div>
-						<div>
-							<p style={inputLabel}>Type</p>
-							<FormControl
-								sx={{ width: "250px", margin: 0 }}
-								fullWidth
-								margin="normal"
-								required
-							>
-								<Select value={type} onChange={(e) => setType(e.target.value)}>
-									<MenuItem value={1}>{PitchTypeEnums[1]}</MenuItem>
-									<MenuItem value={2}>{PitchTypeEnums[2]}</MenuItem>
-									<MenuItem value={3}>{PitchTypeEnums[3]}</MenuItem>
-								</Select>
-							</FormControl>
-						</div>
-					</Box>
-					<Box sx={{ marginBottom: "24px" }}>
-						<div>
-							<p style={inputLabel}>Description</p>
-							<TextField
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								fullWidth
-								required
-								multiline
-								rows={3}
-							/>
-						</div>
-					</Box>
-					<Box sx={{ marginBottom: "24px" }}>
-						<div>
-							<p style={inputLabel}>Price</p>
-							<TextField
-								type="number"
-								value={price}
-								onChange={(e) => setPrice(e.target.value)}
-								fullWidth
-								required
-							/>
-						</div>
-					</Box>
-					<Box sx={{ marginBottom: "24px" }}>
-						<div>
-							<p style={inputLabel}>Background</p>
-							<TextField
-								type="file"
-								accept="image/*"
-								onChange={(e) => setAttachment(e.target.files[0])}
-								fullWidth
-							/>
-						</div>
-					</Box>
-					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-						<Button
-							variant="contained"
-							sx={{
-								backgroundColor: "#303030",
-								"&:hover": { backgroundColor: "#1a1a1a" },
-								marginRight: "15px",
-							}}
-							onClick={handleCancel}
+					<div className="fixed inset-0 bg-black bg-opacity-25" />
+				</Transition.Child>
+
+				<div className="fixed inset-0 overflow-y-auto">
+					<div className="flex min-h-full items-center justify-center p-4 text-center">
+						<Transition.Child
+							as={Fragment}
+							enter="ease-out duration-300"
+							enterFrom="opacity-0 scale-95"
+							enterTo="opacity-100 scale-100"
+							leave="ease-in duration-200"
+							leaveFrom="opacity-100 scale-100"
+							leaveTo="opacity-0 scale-95"
 						>
-							Cancel
-						</Button>
-						<Button type="submit" variant="contained" color="primary">
-							Submit
-						</Button>
-					</Box>
-				</Box>
-			</DialogContent>
-		</Dialog>
+							<Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+								<button onClick={onClose}>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-6 w-6 text-red-500"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M6 18L18 6M6 6l12 12"
+										/>
+									</svg>
+								</button>
+								<Dialog.Title
+									as="h3"
+									className="text-2xl text-center font-medium leading-6 text-gray-900"
+								>
+									Add new Pitch
+								</Dialog.Title>
+								<div className="w-full bg-white p-6 space-y-4 rounded-lg">
+									<form onSubmit={handleSubmit}>
+										<div className="flex justify-between mb-6 gap-3">
+											<div className="w-1/2">
+												<label className="text-md font-semibold mb-2">
+													Name
+												</label>
+												<input
+													type="text"
+													value={name}
+													onChange={(e) => setName(e.target.value)}
+													className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
+													required
+												/>
+											</div>
+											<div className="w-1/2">
+												<label className="text-md font-semibold mb-2">
+													Type
+												</label>
+												<select
+													value={type}
+													onChange={(e) => setType(e.target.value)}
+													className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
+													required
+												>
+													{Object.keys(PitchTypeEnums).map((key) => (
+														<option key={key} value={key}>
+															{PitchTypeEnums[key]}
+														</option>
+													))}
+												</select>
+											</div>
+										</div>
+										<div className="mb-6">
+											<label className="text-md font-semibold mb-2">
+												Description
+											</label>
+											<textarea
+												value={description}
+												onChange={(e) => setDescription(e.target.value)}
+												className="w-full min-h-[80px] max-h-[300px] py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
+												rows="3"
+												required
+											/>
+										</div>
+										<div className="mb-6">
+											<label className="text-md font-semibold mb-2">
+												Price
+											</label>
+											<input
+												type="number"
+												value={price}
+												onChange={(e) => setPrice(e.target.value)}
+												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
+												required
+											/>
+										</div>
+										<div className="mb-6">
+											<label className="text-md font-semibold mb-2">
+												Background
+											</label>
+											<input
+												type="file"
+												accept="image/*"
+												onChange={(e) => setAttachment(e.target.files[0])}
+												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
+											/>
+										</div>
+										<div className="flex justify-end">
+											<button
+												type="button"
+												onClick={resetPopupInput}
+												className="px-4 py-2 bg-primary hover:bg-secondary text-white hover:text-primary rounded-md mr-4"
+											>
+												Reset
+											</button>
+											<button
+												type="submit"
+												className="px-4 py-2 bg-primary hover:bg-secondary text-white hover:text-primary rounded-md"
+											>
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</Dialog.Panel>
+						</Transition.Child>
+					</div>
+				</div>
+			</Dialog>
+		</Transition>
 	);
 }
 
