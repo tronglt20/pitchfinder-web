@@ -2,7 +2,7 @@ import React from "react";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Order, Pitch, General, Customer, SignInPage } from "../Features";
-import Container from "./../WebContainer/container";
+import Container from "../WebContainer/container";
 
 const AppRouter = () => {
 	return (

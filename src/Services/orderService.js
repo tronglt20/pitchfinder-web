@@ -1,7 +1,7 @@
-import axios from "../axios";
+import instance from "./axios";
 
 const GetOrderAPI = () => {
-	return axios.get("/order/owner");
+	return instance.get("/order/owner");
 };
 
 export { GetOrderAPI };

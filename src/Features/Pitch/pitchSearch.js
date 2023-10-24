@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { useDispatch } from "react-redux";
-import { PitchTypeEnums } from "../../enum";
+// import { useDispatch } from "react-redux";
+// import { PitchTypeEnums } from "../../enum";
 
 const selection = [
 	{ name: "Filter", unavailable: true },
@@ -11,7 +11,7 @@ const selection = [
 ];
 
 const PitchSearch = () => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const [searchValue, setSearchValue] = useState("");
 	const [selected, setSelected] = useState(selection[0]);
 
@@ -92,13 +92,13 @@ const PitchSearch = () => {
 															xmlns="http://www.w3.org/2000/svg"
 															fill="none"
 															viewBox="0 0 24 24"
-															stroke-width="1.5"
+															strokeWidth="1.5"
 															stroke="currentColor"
-															class="w-6 h-6"
+															className="w-6 h-6"
 														>
 															<path
-																stroke-linecap="round"
-																stroke-linejoin="round"
+																strokeLinecap="round"
+																strokeLinejoin="round"
 																d="M4.5 12.75l6 6 9-13.5"
 															/>
 														</svg>
@@ -115,15 +115,6 @@ const PitchSearch = () => {
 			</div>
 		</div>
 	);
-};
-
-const filterIconStyles = {
-	height: "20px",
-	width: "20px",
-	borderRadius: "6px",
-	padding: "24px",
-	bgcolor: "#EDF0F7",
-	marginLeft: "10px",
 };
 
 export default PitchSearch;

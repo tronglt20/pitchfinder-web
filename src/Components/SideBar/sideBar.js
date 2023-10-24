@@ -1,36 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBarItem from "./sideBarItem";
 import AvatarMenu from "./avatarMenu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+const sideBarItems = [
+	{
+		name: "dashboard",
+		description: "Dashboard",
+	},
+	{
+		name: "order",
+		description: "Order",
+	},
+	{
+		name: "pitch",
+		description: "Pitch",
+	},
+	{
+		name: "customer",
+		description: "Customer",
+	},
+];
 
 export default function SideBar() {
-	const [selectedIndex, setSelectedIndex] = useState(0);
-	const handleListItemClick = (event, index) => {
-		setSelectedIndex(index);
-	};
-
-	const sideBarItems = [
-		{
-			name: "dashboard",
-			description: "Dashboard",
-		},
-		{
-			name: "order",
-			description: "Order",
-		},
-		{
-			name: "pitch",
-			description: "Pitch",
-		},
-		{
-			name: "customer",
-			description: "Customer",
-		},
-		// {
-		//   name: "testRedux",
-		//   description: "Test Redux",
-		// },
-	];
+	const location = useLocation();
+	const selectedItemIndex = sideBarItems.findIndex(
+		(element) => `/${element.name}` === location.pathname
+	);
 
 	return (
 		<aside
@@ -48,16 +44,13 @@ export default function SideBar() {
 					</Link>
 					<ul className="space-y-4">
 						{sideBarItems.map((element, index) => (
-							<>
-								<SideBarItem
-									key={index}
-									content={element.description}
-									itemIndex={index}
-									clickHandler={handleListItemClick}
-									navigateTo={element.name}
-									isSelected={index === selectedIndex}
-								/>
-							</>
+							<SideBarItem
+								key={index}
+								content={element.description}
+								itemIndex={index}
+								navigateTo={element.name}
+								isSelected={index === selectedItemIndex}
+							/>
 						))}
 					</ul>
 				</div>

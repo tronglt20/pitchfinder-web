@@ -4,7 +4,6 @@ import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../Store/auth";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../Store/auth";
 import ProfilePopup from "./profilePopup";
 import { GetCurrentUserAPI } from "../../Services/iamService";
 

@@ -1,59 +1,40 @@
 import React, { useState } from "react";
 import { PitchItemDetail } from "./pitchItemDetail";
-import Card from "@mui/material/Card";
-import { Box, Typography, CardMedia, CardContent } from "@mui/material";
 
 export const PitchItem = (props) => {
-	const [expanded, setExpanded] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-	const handleExpandClick = () => {
-		setExpanded(!expanded);
+	const handleOpenModal = () => {
+		setIsOpen(true);
 	};
-	const handleClose = () => {
-		setExpanded(false);
+	const onCloseModal = () => {
+		setIsOpen(false);
 	};
 
 	return (
-		<>
-			<Card
-				sx={{
-					width: 300,
-					marginBottom: "40px",
-					cursor: "pointer",
-					marginRight: 4,
-				}}
-				onClick={handleExpandClick}
-			>
-				<CardMedia
-					component="img"
-					height="80px"
-					image="/static/images/cards/paella.jpg"
-					alt="Paella dish"
-					sx={{ padding: "20px", bgcolor: "#cccccc" }}
-				/>
-				<CardContent>
-					<Typography>
-						<h4 style={{ margin: 0 }}>{props.name}</h4>
-						<p style={{ margin: 0 }}>{props.description}</p>
-						<hr />
-						<Box
-							sx={{
-								display: "flex",
-								justifyContent: "space-between",
-								height: "30px",
-							}}
-						>
-							<p>Type: {props.type}</p>
-							<p>Price: {props.price}$</p>
-						</Box>
-					</Typography>
-				</CardContent>
-			</Card>
-			<PitchItemDetail
-				isOpen={expanded}
-				handleCloseDialog={handleClose}
-				{...props}
+		<div
+			className="sm:w-[31.5%] lg:w-[31%] xl:w-[32.1%] cursor-pointer shadow-lg rounded-lg"
+			onClick={handleOpenModal}
+		>
+			<img
+				src="https://res-1.cloudinary.com/gll/image/upload/c_fit,f_auto,h_330,w_750/v1680515328/dacpbxqimhxybqtsdecb.jpg"
+				alt="Paella dish"
+				className="bg-gray-300 rounded-t-lg"
 			/>
-		</>
+			<div className="p-4">
+				<h4 className="m-0">{props.name}</h4>
+				<p className="m-0">{props.description}</p>
+				<hr className="my-2" />
+				<div className="flex justify-between h-30px">
+					<p>Type: {props.type}</p>
+					<p>Price: {props.price}$</p>
+				</div>
+			</div>
+			<PitchItemDetail
+				isOpen={isOpen}
+				onClose={onCloseModal}
+				itemData={props}
+			/>
+		</div>
 	);
 };

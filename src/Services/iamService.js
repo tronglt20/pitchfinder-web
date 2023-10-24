@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "./axios";
 
 export const GetCurrentUserAPI = () => {
 	return axios.get("/iam/authentication/current-user");
