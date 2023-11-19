@@ -18,6 +18,7 @@ const SignInPage = () => {
 			if (response.status === 200) {
 				dispatch(login(response.data));
 				localStorage.setItem("accessToken", response.data.accessToken);
+				localStorage.setItem("isAuthentication", true);
 				toast.success("Login successful!");
 				redirect("/dashboard");
 			} else {

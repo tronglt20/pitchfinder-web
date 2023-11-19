@@ -47,7 +47,7 @@ export const PitchItemDetail = ({ isOpen, onClose, itemData }) => {
 									<p className="text-label">Type:</p> {itemData.type}
 								</div>
 								<div className="flex gap-1">
-									<p className="text-label">Price:</p> {itemData.price}$
+									<p className="text-label">Price:</p> {itemData.price} vnđ
 								</div>
 							</div>
 

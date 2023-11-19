@@ -24,7 +24,6 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 				price,
 				Number(type)
 			);
-			console.log(response);
 			if (response.status === 200) {
 				dispatch(addPitch({ name, description, price, type }));
 				toast.success("Add pitch successful!");

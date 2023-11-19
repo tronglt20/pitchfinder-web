@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,25 +16,10 @@ const AvatarMenu = (props) => {
 	// }, []);
 	const dispatch = useDispatch();
 
-	const [profileExpanded, setProfileExpanded] = useState(false);
-
-	const handleExpandClick = () => {
-		setAnchorEl(null);
-		setProfileExpanded(!profileExpanded);
-	};
-
 	const logoutHandler = () => {
 		dispatch(logout());
 		localStorage.removeItem("accessToken");
-	};
-
-	const [anchorEl, setAnchorEl] = useState(null);
-	const handleClick = (event) => {
-		setAnchorEl(anchorEl ? null : event.currentTarget);
-	};
-	const handleClose = () => {
-		setProfileExpanded(false);
-		setAnchorEl(null);
+		localStorage.removeItem("isAuthentication");
 	};
 
 	return (

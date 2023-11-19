@@ -19,7 +19,7 @@ export const PitchItem = (props) => {
 			<img
 				src="https://res-1.cloudinary.com/gll/image/upload/c_fit,f_auto,h_330,w_750/v1680515328/dacpbxqimhxybqtsdecb.jpg"
 				alt="Paella dish"
-				className="bg-gray-300 rounded-t-lg"
+				className="bg-gray-300 rounded-t-lg w-full"
 			/>
 			<div className="p-4">
 				<h4 className="m-0">{props.name}</h4>
@@ -27,7 +27,7 @@ export const PitchItem = (props) => {
 				<hr className="my-2" />
 				<div className="flex justify-between h-30px">
 					<p>Type: {props.type}</p>
-					<p>Price: {props.price}$</p>
+					<p>Price: {props.price} vnđ</p>
 				</div>
 			</div>
 			<PitchItemDetail
