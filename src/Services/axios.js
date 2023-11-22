@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { logout } from "../Store/auth";
 
 const instance = axios.create({
 	baseURL: process.env.REACT_APP_API_ENDPOINT,
 });
+
+const handleLogout = () => {
+	localStorage.removeItem("accessToken");
+	localStorage.removeItem("isAuthentication");
+	window.location.reload();
+};
 
 instance.interceptors.request.use(
 	(config) => {
@@ -19,13 +23,26 @@ instance.interceptors.request.use(
 			error.response.status === 401 &&
 			!originalRequest._retry
 		) {
-			useDispatch(logout());
-			localStorage.removeItem("accessToken");
-			localStorage.removeItem("isAuthentication");
+			handleLogout();
 			originalRequest._retry = true;
 		}
 		return Promise.reject(error);
 	}
 );
 
+instance.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		const originalRequest = error.config;
+		if (
+			error.response &&
+			error.response.status === 401 &&
+			!originalRequest._retry
+		) {
+			handleLogout();
+			originalRequest._retry = true;
+		}
+		return Promise.reject(error);
+	}
+);
 export default instance;

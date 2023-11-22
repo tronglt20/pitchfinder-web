@@ -4,28 +4,31 @@ import { PitchTypeEnums } from "../../enum";
 import { Dialog, Transition } from "@headlessui/react";
 import { addPitch } from "../../Store/pitch";
 import { toast } from "react-toastify";
-
 import { useDispatch } from "react-redux";
 
-function AddPitchPopup({ isOpen, onClose, reload }) {
+const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 	const dispatch = useDispatch();
-	const [name, setName] = useState("");
-	const [description, setDescription] = useState("");
-	const [type, setType] = useState(0);
-	const [price, setPrice] = useState("");
-	const [attachment, setAttachment] = useState("");
+	const [pitch, setPitch] = useState({
+		name: "",
+		description: "",
+		type: 1,
+		price: "",
+	});
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setPitch((prevState) => ({
+			...prevState,
+			[name]: value,
+		}));
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await AddPitchAPI(
-				name,
-				description,
-				price,
-				Number(type)
-			);
+			const response = await AddPitchAPI(pitch);
 			if (response.status === 200) {
-				dispatch(addPitch({ name, description, price, type }));
+				dispatch(addPitch(pitch));
 				toast.success("Add pitch successful!");
 				resetPopupInput();
 				reload();
@@ -39,11 +42,12 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 	};
 
 	const resetPopupInput = () => {
-		setName("");
-		setDescription("");
-		setType("");
-		setPrice("");
-		setAttachment("");
+		setPitch({
+			name: "",
+			description: "",
+			type: 1,
+			price: "",
+		});
 	};
 
 	return (
@@ -82,8 +86,9 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 											<label className="text-md font-semibold mb-2">Name</label>
 											<input
 												type="text"
-												value={name}
-												onChange={(e) => setName(e.target.value)}
+												value={pitch.name}
+												onChange={handleInputChange}
+												name="name"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 												required
 											/>
@@ -91,8 +96,9 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 										<div className="w-1/2">
 											<label className="text-md font-semibold mb-2">Type</label>
 											<select
-												value={type}
-												onChange={(e) => setType(e.target.value)}
+												value={pitch.type}
+												onChange={handleInputChange}
+												name="type"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 												required
 											>
@@ -109,8 +115,9 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 											Description
 										</label>
 										<textarea
-											value={description}
-											onChange={(e) => setDescription(e.target.value)}
+											value={pitch.description}
+											onChange={handleInputChange}
+											name="description"
 											className="w-full min-h-[80px] max-h-[300px] py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											rows="3"
 											required
@@ -120,8 +127,9 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 										<label className="text-md font-semibold mb-2">Price</label>
 										<input
 											type="number"
-											value={price}
-											onChange={(e) => setPrice(e.target.value)}
+											value={pitch.price}
+											onChange={handleInputChange}
+											name="price"
 											className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											required
 										/>
@@ -133,7 +141,8 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 										<input
 											type="file"
 											accept="image/*"
-											onChange={(e) => setAttachment(e.target.files[0])}
+											onChange={handleInputChange}
+											name="attachment"
 											className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 										/>
 									</div>
@@ -160,6 +169,6 @@ function AddPitchPopup({ isOpen, onClose, reload }) {
 			</Dialog>
 		</Transition>
 	);
-}
+};
 
 export default AddPitchPopup;
