@@ -66,7 +66,7 @@ const Pitch = () => {
 			</div>
 			<div className="mt-8 h-fit flex flex-wrap gap-6">
 				{responseData.map((item, index) => (
-					<PitchItem key={item?.id} item={item} />
+					<PitchItem key={item?.id} item={item} reload={getData} />
 				))}
 			</div>
 		</>

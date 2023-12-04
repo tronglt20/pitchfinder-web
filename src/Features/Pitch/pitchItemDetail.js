@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PitchTypeEnums } from "../../enum";
 import { toast } from "react-toastify";
-import { UpdateStoreAPI } from "../../Services/pitchService";
+import { UpdatePitchAPI } from "../../Services/pitchService";
 
-const PitchItemDetail = ({ isOpen, onClose, item }) => {
+const PitchItemDetail = ({ isOpen, onClose, item, image, reload }) => {
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [editedPitch, setEditedPitch] = useState(item);
 
@@ -20,27 +20,30 @@ const PitchItemDetail = ({ isOpen, onClose, item }) => {
 		}));
 	};
 
-	const handleSave = async (e) => {
-		console.log(editedPitch);
-		// toast(editedPitch);
-		// const response = await UpdateStoreAPI(editedPitch);
-		// if (response.status === 200) {
-		// 	setIsEditMode(false);
-		// 	onClose();
-		// 	toast("Update success");
-		// }
+	const handleSave = async () => {
+		try {
+			const response = await UpdatePitchAPI(editedPitch);
+			if (response.status === 200) {
+				setIsEditMode(false);
+				onClose();
+				toast("Update success");
+				reload();
+			}
+		} catch {
+			toast("Update Fail");
+		}
 	};
 
-	const handleDelete = async (e) => {
-		console.log(item.id);
-		// toast(editedPitch);
-		// const response = await UpdateStoreAPI(editedPitch);
-		// if (response.status === 200) {
-		// 	setIsEditMode(false);
-		// 	onClose();
-		// 	toast("Update success");
-		// }
-	};
+	// const handleDelete = async (e) => {
+	// 	console.log(item.id);
+	// 	toast(editedPitch);
+	// 	const response = await UpdateStoreAPI(editedPitch);
+	// 	if (response.status === 200) {
+	// 		setIsEditMode(false);
+	// 		onClose();
+	// 		toast("Update success");
+	// 	}
+	// };
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
@@ -73,7 +76,7 @@ const PitchItemDetail = ({ isOpen, onClose, item }) => {
 							</Dialog.Title>
 							<div className="flex gap-5 my-5">
 								<img
-									src="https://res-1.cloudinary.com/gll/image/upload/c_fit,f_auto,h_330,w_750/v1680515328/dacpbxqimhxybqtsdecb.jpg"
+									src={image}
 									alt="Paella dish"
 									className="bg-gray-300 w-[300px] rounded-lg"
 								/>
@@ -158,7 +161,7 @@ const PitchItemDetail = ({ isOpen, onClose, item }) => {
 										<div className="flex gap-2 ">
 											{isEditMode ? (
 												<>
-													<button
+													{/* <button
 														className="py-2 px-4 bg-primary text-white rounded-md hover:cursor-pointer hover:bg-red-500 flex gap-1"
 														onClick={handleDelete}
 													>
@@ -177,6 +180,7 @@ const PitchItemDetail = ({ isOpen, onClose, item }) => {
 															/>
 														</svg>
 													</button>
+													*/}
 													<button
 														className="py-2 px-4 bg-primary text-white rounded-md hover:cursor-pointer hover:bg-secondary hover:text-primary flex gap-1"
 														onClick={handleSave}

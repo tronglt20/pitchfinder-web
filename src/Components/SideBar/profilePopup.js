@@ -10,10 +10,15 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 	const [editedStore, setEditedStore] = useState({});
 
 	const getStoreData = async () => {
-		const response = await GetStoreAPI();
-		setStore(response.data);
-		setEditedStore(response.data);
+		try {
+			const response = await GetStoreAPI();
+			setStore(response.data);
+			setEditedStore(response.data);
+		} catch {
+			console.log("Got error at profile");
+		}
 	};
+
 	useEffect(() => {
 		getStoreData();
 	}, []);
@@ -100,6 +105,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 												}
 												onChange={handleInputChange}
 												name="address"
+												placeholder="Address"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											/>
 										</label>
@@ -114,6 +120,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 														? store.phoneNumber
 														: editedStore.phoneNumber
 												}
+												placeholder="Phone Number"
 												onChange={handleInputChange}
 												name="phoneNumber"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"

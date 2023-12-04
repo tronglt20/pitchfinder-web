@@ -1,25 +1,17 @@
 import React from "react";
-import Card from "@mui/material/Card";
 import { OrderItem } from "./orderItem";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 
 export const LastestOrderChart = (props) => {
 	return (
-		<Card sx={{ background: "#cccccc", height: "400px", padding: "24px" }}>
-			<CardContent>
-				<Typography
-					sx={{ textAlign: "center" }}
-					gutterBottom
-					variant="h5"
-					component="div"
-				>
+		<div className="bg-white py-2 px-5 shadow-md rounded">
+			<div className="flex flex-col gap-2">
+				<p className="text-center text-3xl text-primary font-bold pt-3">
 					Lastest Orders
-				</Typography>
+				</p>
 				<OrderItem />
 				<OrderItem />
 				<OrderItem />
-			</CardContent>
-		</Card>
+			</div>
+		</div>
 	);
-}
+};

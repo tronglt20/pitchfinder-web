@@ -22,13 +22,23 @@ const UpdateStoreAPI = (store) => {
 	formData.append("Address", store.address);
 	formData.append("PhoneNumber", store.phoneNumber);
 	formData.append("Open", store.open);
-	formData.append("Close", store.name.close);
+	formData.append("Close", store.close);
 
-	return instance.put("/pitch/store", store, {
+	return instance.put("/pitch/store", formData, {
 		headers: {
 			"Content-Type": "multipart/form-data",
 		},
 	});
 };
 
-export { GetStoreAPI, GetPitchsAPI, AddPitchAPI, UpdateStoreAPI };
+const UpdatePitchAPI = (pitch) => {
+	return instance.put(`/pitch/store/pitchs/${pitch.id}`, pitch);
+};
+
+export {
+	GetStoreAPI,
+	GetPitchsAPI,
+	AddPitchAPI,
+	UpdateStoreAPI,
+	UpdatePitchAPI,
+};

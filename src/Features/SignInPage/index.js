@@ -3,10 +3,12 @@ import { login } from "../../Store/auth";
 import { Authentication } from "../../Services/iamService";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
@@ -19,8 +21,8 @@ const SignInPage = () => {
 				dispatch(login(response.data));
 				localStorage.setItem("accessToken", response.data.accessToken);
 				localStorage.setItem("isAuthentication", true);
+				navigate("/dashboard");
 				toast.success("Login successful!");
-				redirect("/dashboard");
 			} else {
 				toast.error("Error");
 			}
@@ -96,7 +98,7 @@ const SignInPage = () => {
 					>
 						Sign In
 					</button>
-					<button className="w-full flex items-center justify-center py-2 bg-secondary hover:bg-dark text-white rounded-md font-medium text-lg">
+					{/* <button className="w-full flex items-center justify-center py-2 bg-secondary hover:bg-dark text-white rounded-md font-medium text-lg">
 						<svg
 							className="h-6 w-6 mr-2"
 							xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +147,7 @@ const SignInPage = () => {
 							</g>
 						</svg>
 						<span>Continue with Google</span>
-					</button>
+					</button> */}
 				</form>
 			</div>
 		</div>
