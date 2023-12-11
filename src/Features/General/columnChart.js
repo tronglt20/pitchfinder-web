@@ -120,7 +120,7 @@ const chartOneOptions = {
 
 export const ColumnChart = () => {
 	return (
-		<div className="bg-white rounded shadow-lg">
+		<div className="bg-white mr-3 rounded shadow-lg">
 			<Chart
 				className="w-full"
 				options={chartOneOptions}

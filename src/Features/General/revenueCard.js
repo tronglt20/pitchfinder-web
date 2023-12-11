@@ -2,7 +2,7 @@ import React from "react";
 
 export const RevenueCard = (props) => {
 	return (
-		<div className="bg-white rounded shadow-lg">
+		<div className="bg-white mr-3 mb-3 rounded shadow-lg">
 			<div className="p-4">
 				<h2 className="text-dark text-2xl font-bold">600$</h2>
 				<p className="text-sm text-gray-800">Total Earning</p>

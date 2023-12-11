@@ -3,7 +3,6 @@ import Header from "../../Components/ContentItem/header";
 import PitchSearch from "./pitchSearch";
 import { PitchItem } from "./pitchItem";
 import { GetPitchsAPI } from "../../Services/pitchService";
-import { PitchTypeEnums } from "../../enum";
 import AddPitchPopup from "./addPitchPopup";
 
 const Pitch = () => {

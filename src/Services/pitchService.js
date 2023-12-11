@@ -1,5 +1,4 @@
 import instance from "./axios";
-import store from "./../Store/index";
 
 const GetStoreAPI = () => {
 	return instance.get("/pitch/store");
@@ -9,10 +8,17 @@ const GetPitchsAPI = () => {
 	return instance.get("/pitch/store/pitchs");
 };
 
-const AddPitchAPI = (pitch) => {
-	return instance.post("/pitch/store/pitchs", {
-		...pitch,
-		type: parseInt(pitch.type),
+const AddPitchAPI = (pitch, file) => {
+	const formData = new FormData();
+	formData.append("Name", pitch.name);
+	formData.append("Type", pitch.type);
+	formData.append("Description", pitch.description);
+	formData.append("Price", pitch.price);
+	formData.append("Formfiles", file);
+	return instance.post("/pitch/store/pitchs", formData, {
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
 	});
 };
 

@@ -1,24 +1,24 @@
 import React, { useState, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-// import { useDispatch } from "react-redux";
-// import { PitchTypeEnums } from "../../enum";
+import { useDispatch } from "react-redux";
+import { getPitchsByFilter } from "../../Store/pitch";
 
 const selection = [
-	{ name: "Filter", unavailable: true },
+	{ name: "Filter", unavailable: false },
 	{ name: "Size 5", unavailable: false },
 	{ name: "Size 7", unavailable: false },
 	{ name: "Size 11", unavailable: false },
 ];
 
 const PitchSearch = () => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const [searchValue, setSearchValue] = useState("");
 	const [selected, setSelected] = useState(selection[0]);
 
 	const handleSearchChange = (event) => {
 		const value = event.target.value;
 		setSearchValue(value);
-		// dispatch(pitchActions.getPitchsByFilter({ search: value }));
+		dispatch(getPitchsByFilter({ search: value }));
 	};
 
 	return (

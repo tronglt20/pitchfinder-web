@@ -14,6 +14,11 @@ const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 		type: 1,
 		price: "",
 	});
+	const [files, setFiles] = useState([]);
+
+	const handleFileChange = (e) => {
+		setFiles(e.target.files[0]);
+	};
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -26,7 +31,7 @@ const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await AddPitchAPI(pitch);
+			const response = await AddPitchAPI(pitch, files);
 			if (response.status === 200) {
 				dispatch(addPitch(pitch));
 				toast.success("Add pitch successful!");
@@ -141,8 +146,8 @@ const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 										<input
 											type="file"
 											accept="image/*"
-											onChange={handleInputChange}
-											name="attachment"
+											onChange={handleFileChange}
+											name="formfiles"
 											className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 										/>
 									</div>

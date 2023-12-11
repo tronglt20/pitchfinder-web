@@ -82,7 +82,8 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 							<div className="w-full bg-white p-6 space-y-4 rounded-lg">
 								<form>
 									<div className="mb-6">
-										<label className="text-md font-semibold mb-2">
+										<label className="text-md mb-2">
+											Store Name
 											<input
 												disabled={!isEditMode}
 												type="text"
@@ -91,12 +92,14 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 												}
 												onChange={handleInputChange}
 												name="name"
+												placeholder="Store Name"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											/>
 										</label>
 									</div>
 									<div className="mb-6">
-										<label className="text-md font-semibold mb-2">
+										<label className="text-md mb-2">
+											Address
 											<input
 												disabled={!isEditMode}
 												type="text"
@@ -105,13 +108,14 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 												}
 												onChange={handleInputChange}
 												name="address"
-												placeholder="Address"
+												placeholder="Danang, Vietnam"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											/>
 										</label>
 									</div>
 									<div className="mb-6">
-										<label className="text-md font-semibold mb-2">
+										<label className="text-md mb-2">
+											Phone Number
 											<input
 												disabled={!isEditMode}
 												type="text"
@@ -120,7 +124,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 														? store.phoneNumber
 														: editedStore.phoneNumber
 												}
-												placeholder="Phone Number"
+												placeholder="0994234121"
 												onChange={handleInputChange}
 												name="phoneNumber"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
@@ -128,7 +132,8 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 										</label>
 									</div>
 									<div className="mb-6">
-										<label className="text-md font-semibold mb-2">
+										<label className="text-md mb-2">
+											Open Time
 											<input
 												disabled={!isEditMode}
 												type="text"
@@ -137,12 +142,14 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 												}
 												onChange={handleInputChange}
 												name="open"
+												placeholder="08:00"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											/>
 										</label>
 									</div>
 									<div className="mb-6">
-										<label className="text-md font-semibold mb-2">
+										<label className="text-md mb-2">
+											Close Time
 											<input
 												disabled={!isEditMode}
 												type="text"
@@ -151,6 +158,7 @@ const ProfilePopup = ({ isOpen, onClose }) => {
 												}
 												onChange={handleInputChange}
 												name="close"
+												placeholder="22:00"
 												className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											/>
 										</label>

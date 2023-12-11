@@ -10,8 +10,8 @@ export const General = () => {
 		<>
 			<Header content="Dashboard" />
 			<div className="flex-grow">
-				<div className="flex flex-wrap gap-5">
-					<div className="w-[49%] h-fit">
+				<div className="flex flex-wrap">
+					<div className="w-2/4 h-fit">
 						<div className="mb-4">
 							<RevenueCard />
 						</div>
@@ -19,13 +19,13 @@ export const General = () => {
 							<RevenueCard />
 						</div>
 					</div>
-					<div className="w-[49%] h-fit">
+					<div className=" ss:w-2/4 h-fit">
 						<SideBarCard />
 					</div>
-					<div className="w-[49%] h-fit">
+					<div className="ss:w-2/4 h-fit">
 						<ColumnChart />
 					</div>
-					<div className="w-[49%] h-fit">
+					<div className="ss:w-2/4 h-fit">
 						<LastestOrderChart />
 					</div>
 				</div>

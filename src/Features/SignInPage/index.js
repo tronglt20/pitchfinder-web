@@ -55,43 +55,25 @@ const SignInPage = () => {
 					</div>
 					<h1 className="mt-2 text-2xl font-medium text-secondary">Sign in</h1>
 				</div>
-				<form onSubmit={handleSubmit} className="mt-6 space-y-4">
+				<form onSubmit={handleSubmit} className="mt-6 min-w-[300px] space-y-4">
 					<label className="block text-secondary text-md font-medium mb-2">
+						Email
 						<input
 							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-primary focus:shadow-outline"
 							name="username"
 							type="email"
-							placeholder="Username"
+							placeholder="email@gmail.com"
 						/>
 					</label>
 					<label className="block text-secondary text-md font-medium mb-2">
+						Password
 						<input
 							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700  focus:outline-primary focus:shadow-outline"
 							name="password"
 							type="password"
-							placeholder="Password"
+							placeholder="••••••••"
 						/>
 					</label>
-					<div className="flex items-center justify-between">
-						<input
-							id="checkbox"
-							type="checkbox"
-							value=""
-							className="w-4 h-4 text-primary rounded accent-secondary"
-						/>
-						<label
-							className="items-center align-middle text-secondary text-md font-medium ml-1 mr-4"
-							htmlFor="checkbox"
-						>
-							Remember me
-						</label>
-						<a
-							href="/"
-							className="text-md font-medium text-primary hover:underline"
-						>
-							Forgot password?
-						</a>
-					</div>
 					<button
 						type="submit"
 						className="w-full py-2 bg-primary hover:bg-secondary text-white rounded-md font-medium text-lg"

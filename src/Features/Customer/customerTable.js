@@ -34,12 +34,7 @@ const CustomerTable = () => {
 				</thead>
 				<tbody>
 					{responseData.map((item) => (
-						<CustomerItem
-							index={item?.index}
-							name={item?.name}
-							phoneNumber={item?.phoneNumber}
-							numberOfOrder={item?.numberOfOrder}
-						/>
+						<CustomerItem key={item.id} customerItem={item} />
 					))}
 					<tr className="bg-white border border-white">
 						<td className="py-2 px-4">1</td>
