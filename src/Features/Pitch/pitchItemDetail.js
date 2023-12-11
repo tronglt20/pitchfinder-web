@@ -78,7 +78,7 @@ const PitchItemDetail = ({ isOpen, onClose, item, image, reload }) => {
 								<img
 									src={image}
 									alt="Paella dish"
-									className="bg-gray-300 w-[300px] rounded-lg"
+									className="bg-gray-300 object-cover w-[300px] rounded-lg"
 								/>
 								<div className="flex flex-col gap-2">
 									<div className="flex gap-1">

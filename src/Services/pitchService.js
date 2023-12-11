@@ -4,8 +4,8 @@ const GetStoreAPI = () => {
 	return instance.get("/pitch/store");
 };
 
-const GetPitchsAPI = () => {
-	return instance.get("/pitch/store/pitchs");
+const GetPitchsAPI = (seachParams) => {
+	return instance.get(`/pitch/store/pitchs?${seachParams}`);
 };
 
 const AddPitchAPI = (pitch, file) => {

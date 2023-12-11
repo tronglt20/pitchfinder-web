@@ -2,20 +2,12 @@ import React, { useState } from "react";
 import PitchItemDetail from "./pitchItemDetail";
 import { PitchTypeEnums } from "../../enum";
 
+const seedImage =
+	"https://barcelonapremiersc.com/wp-content/uploads/2022/02/pitch-in-soccer-scaled.jpg";
+
 export const PitchItem = ({ item, reload }) => {
 	const [isOpen, setIsOpen] = useState(false);
-
-	const getRandomImageFromArray = (imageArray) => {
-		const randomIndex = Math.floor(Math.random() * imageArray.length);
-		const randomImage = imageArray[randomIndex];
-		return randomImage;
-	};
-
-	const seedRandomImage = getRandomImageFromArray([
-		"https://barcelonapremiersc.com/wp-content/uploads/2022/02/pitch-in-soccer-scaled.jpg",
-		"https://snapsoccer.com/wp-content/webpc-passthru.php?src=https://snapsoccer.com/wp-content/uploads/2022/01/corner-lines.jpg&nocache=1",
-		"https://as1.ftcdn.net/v2/jpg/05/00/21/88/1000_F_500218890_VyoaYuQvhnJ6uTVFnOp3MyyVV2HGT3fC.jpg",
-	]);
+	let img = item.attachments[0] ? item.attachments[0].presignedUrl : seedImage;
 
 	const openModal = () => {
 		setIsOpen(true);
@@ -31,19 +23,19 @@ export const PitchItem = ({ item, reload }) => {
 				onClick={openModal}
 			>
 				<img
-					src={seedRandomImage}
+					src={img}
 					alt="Paella dish"
-					className="bg-gray-300 rounded-t-lg w-full"
+					className="bg-gray-300 min-h-[260px] object-cover rounded-t-lg w-full"
 				/>
 				<div className="p-4">
-					<h4 className="m-0">{item.name}</h4>
+					<h4 className="m-0">{item?.name}</h4>
 					<p className="m-0 h-20 overflow-auto no-scrollbar">
-						{item.description}
+						{item?.description}
 					</p>
 					<hr className="my-2" />
 					<div className="flex justify-between h-30px">
 						<p>Type: {PitchTypeEnums[item?.type]}</p>
-						<p>Price: {item.price} vnđ</p>
+						<p>Price: {item?.price} vnđ</p>
 					</div>
 				</div>
 			</div>
@@ -51,7 +43,7 @@ export const PitchItem = ({ item, reload }) => {
 				isOpen={isOpen}
 				onClose={closeModal}
 				item={item}
-				image={seedRandomImage}
+				image={img}
 				reload={reload}
 			/>
 		</>
