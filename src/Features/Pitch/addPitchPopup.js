@@ -12,7 +12,7 @@ const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 		name: "",
 		description: "",
 		type: 1,
-		price: "",
+		price: 10000,
 	});
 	const [files, setFiles] = useState([]);
 
@@ -134,6 +134,7 @@ const AddPitchPopup = ({ isOpen, onClose, reload }) => {
 											type="number"
 											value={pitch.price}
 											onChange={handleInputChange}
+											min={10000}
 											name="price"
 											className="w-full py-2 px-3 border rounded focus:outline-none focus:shadow-outline"
 											required

@@ -1,27 +1,10 @@
-import React, { useEffect, useCallback, useState } from "react";
 import { OrderItem } from "./orderItem";
-import { GetOrderAPI } from "../../Services/orderService";
 import image from "../../Assets/empty_product_banner.c076afe7.png";
 
-const OrderTable = () => {
-	const [responseData, setResponseData] = useState([]);
-
-	const getData = useCallback(async () => {
-		try {
-			const response = await GetOrderAPI();
-			setResponseData(response.data);
-		} catch (error) {
-			console.log("Get Data from Order got error");
-		}
-	}, []);
-
-	useEffect(() => {
-		getData();
-	}, [getData]);
-
+const OrderTable = ({ orderItem }) => {
 	return (
 		<>
-			{responseData.length > 0 ? (
+			{orderItem.length > 0 ? (
 				<div className="mt-5 relative overflow-x-auto shadow-lg rounded-lg">
 					<table
 						className="w-full text-md text-left  text-dark border border-dark"
@@ -31,12 +14,13 @@ const OrderTable = () => {
 							<tr>
 								<th className="py-2 px-4">Id</th>
 								<th className="py-2 px-4">Name</th>
-								<th className="py-2 px-4">Phone Number</th>
-								<th className="py-2 px-4">Number of order</th>
+								<th className="py-2 px-4">Price</th>
+								<th className="py-2 px-4">Duration</th>
+								<th className="py-2 px-4">Pitch</th>
 							</tr>
 						</thead>
 						<tbody>
-							{responseData.map((item) => (
+							{orderItem.map((item) => (
 								<OrderItem key={item.id} orderItem={item} />
 							))}
 						</tbody>

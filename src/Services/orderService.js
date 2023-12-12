@@ -1,7 +1,7 @@
 import instance from "./axios";
 
-const GetOrderAPI = () => {
-	return instance.get("/order/owner");
+const GetOrderAPI = (searchParam) => {
+	return instance.get(`/order/owner?${searchParam}`);
 };
 
 export { GetOrderAPI };
